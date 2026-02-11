@@ -32,11 +32,20 @@
         opacity: 1;
         transform: translateY(0);
       }
+      /* 湘南江の島店用（シアン） */
       .gradient-btn {
         background: linear-gradient(135deg, #00BDD6 0%, #0096ab 100%);
         transition: transform 0.2s ease;
       }
       .gradient-btn:hover { transform: scale(1.05); }
+
+      /* 片瀬江の島店用（イエロー/オレンジ系） */
+      .gradient-btn-yellow {
+        background: linear-gradient(135deg, #fbbf24 0%, #f97316 100%);
+        transition: transform 0.2s ease;
+        color: white;
+      }
+      .gradient-btn-yellow:hover { transform: scale(1.05); }
       
       /* 縦書き用 */
       .writing-vertical {
@@ -134,21 +143,35 @@
         return (
           <div className="bg-white overflow-x-hidden text-gray-800 leading-loose">
             
-            {/* 1. Hero Section (FV) */}
+            {/* 1. Hero Section (FV) - デザイン修正：フォントサイズ縮小、明朝体、余白感 */}
             <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
               <div className="absolute inset-0 z-0">
                 <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=1920" className="w-full h-full object-cover brightness-[0.7]" alt="Shonan Beach" />
                 <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60"></div>
               </div>
               <div className="relative z-10 text-center px-4 max-w-5xl">
-                <div className="reveal active mb-8">
-                  <span className="inline-block px-6 py-2 rounded-full bg-white/10 backdrop-blur-md text-white text-xs md:text-sm border border-white/20 mb-6 font-medium tracking-[0.2em] uppercase">電動トゥクトゥクレンタル</span>
-                  <h1 className="text-4xl md:text-6xl lg:text-8xl font-bold text-white leading-tight drop-shadow-2xl mb-8 tracking-tight">湘南で最高の1day旅を送るなら<br /><span className="text-cyan-400">Emobi 江ノ島</span></h1>
-                  <p className="text-lg md:text-2xl text-white/90 drop-shadow-md mb-12 max-w-3xl mx-auto leading-relaxed">江の島から鎌倉・湘南へ。旅の移動を、最高の思い出に。</p>
+                <div className="reveal active mb-12">
+                  <span className="inline-block px-6 py-2 rounded-full bg-white/10 backdrop-blur-md text-white text-xs md:text-sm border border-white/20 mb-8 font-medium tracking-[0.2em] uppercase">電動トゥクトゥクレンタル</span>
+                  
+                  {/* キャッチコピー修正：サイズを抑え、字間を広く、明朝体へ */}
+                  <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-relaxed drop-shadow-2xl mb-8 tracking-widest font-serif">
+                    湘南で最高の1day旅を。<br />
+                    <span className="text-cyan-200 text-4xl md:text-6xl mt-4 inline-block">Emobi 江ノ島</span>
+                  </h1>
+                  
+                  <p className="text-base md:text-lg text-white/90 drop-shadow-md mb-12 max-w-2xl mx-auto leading-loose tracking-wider">
+                    江の島から鎌倉・湘南へ。<br className="md:hidden"/>旅の移動を、最高の思い出に。
+                  </p>
                 </div>
+                
                 <div className="reveal active flex flex-col sm:flex-row gap-5 justify-center items-center">
-                  <a href="#booking" className="gradient-btn px-10 py-5 rounded-full text-white font-bold text-lg shadow-2xl w-full sm:w-auto min-w-[240px] text-center">湘南江の島店を予約</a>
-                  <a href="#booking" className="gradient-btn px-10 py-5 rounded-full text-white font-bold text-lg shadow-2xl w-full sm:w-auto min-w-[240px] text-center">片瀬江の島店を予約</a>
+                  <a href="#booking" className="gradient-btn px-10 py-4 rounded-full text-white font-bold text-base shadow-2xl w-full sm:w-auto min-w-[240px] text-center tracking-widest">
+                    湘南江の島店
+                  </a>
+                  {/* 片瀬江の島店：黄色系に変更 */}
+                  <a href="#booking" className="gradient-btn-yellow px-10 py-4 rounded-full text-white font-bold text-base shadow-2xl w-full sm:w-auto min-w-[240px] text-center tracking-widest">
+                    片瀬江の島店
+                  </a>
                 </div>
               </div>
               <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-70">
@@ -156,7 +179,7 @@
               </div>
             </section>
 
-            {/* 2. Emobiとは？ (新規実装) */}
+            {/* 2. Emobiとは？ */}
             <section className="py-24 md:py-32 px-4 max-w-7xl mx-auto">
               <div className="flex flex-col lg:flex-row items-start gap-12 lg:gap-20">
                 <div className="w-full lg:w-3/5 reveal relative">
@@ -193,7 +216,7 @@
               </div>
             </section>
 
-            {/* 3. Emobi江ノ島だからこそのおすすめ (内容刷新) */}
+            {/* 3. Emobi江ノ島だからこそのおすすめ */}
             <section className="py-28 bg-gray-50">
               <div className="max-w-7xl mx-auto px-4">
                 <SectionTitle subtitle="RECOMMEND" title="Emobi江ノ島だからこその体験" />
@@ -249,7 +272,7 @@
               </div>
             </section>
 
-            {/* 4. 具体的な楽しみ方（IF動画 & モデルコース） (新規デザイン適用) */}
+            {/* 4. 具体的な楽しみ方（順序入れ替え：モデルコース → IF動画） */}
             <section className="py-28 bg-white relative overflow-hidden">
                {/* 背景装飾文字 */}
               <div className="absolute top-10 left-0 w-full text-center pointer-events-none select-none overflow-hidden">
@@ -257,66 +280,22 @@
               </div>
 
               <div className="max-w-6xl mx-auto px-4 relative z-10">
-                <div className="text-center mb-12 reveal">
-                   <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-800">最新！鎌倉デートプラン！</h2>
-                   <p className="text-gray-500">
-                     <span className="bg-gray-200 text-gray-700 px-2 py-1 text-sm font-bold mr-2">最新</span>
-                     の観光地をまとめたデートプラン！<br className="hidden md:block"/>
-                     グルメから景色の良いスポットまで、様々な鎌倉の魅力をご紹介！
-                   </p>
-                </div>
-
-                {/* 動画プレースホルダーエリア */}
-                <div className="relative max-w-sm mx-auto reveal">
-                  {/* 右上の集中線あしらい (CSSで簡易再現) */}
-                  <div className="absolute -top-12 -right-16 w-32 h-32 opacity-50 text-cyan-400 text-6xl">
-                    <i className="fa-regular fa-sun fa-spin-pulse" style={{animationDuration: '10s'}}></i>
-                  </div>
-                  <div className="absolute -top-10 -right-20 space-y-2 hidden md:block">
-                     <div className="w-10 h-0.5 bg-cyan-400 rotate-[-15deg]"></div>
-                     <div className="w-8 h-0.5 bg-cyan-400 rotate-[-10deg] ml-4"></div>
-                  </div>
-
-                  {/* 動画枠 */}
-                  <div className="aspect-[9/16] bg-black rounded-xl overflow-hidden shadow-2xl relative border-4 border-white group cursor-pointer">
-                    <img src="https://images.unsplash.com/photo-1542640244-7e67286feb8f?auto=format&fit=crop&q=80&w=600" className="w-full h-full object-cover opacity-80 group-hover:opacity-60 transition-opacity" alt="Movie Thumbnail" />
-                    <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
-                      <p className="text-sm font-bold mb-2 drop-shadow-md">\ 9割が知らない！ /</p>
-                      <h3 className="text-2xl font-bold mb-6 drop-shadow-md">最新！鎌倉デートプラン</h3>
-                      <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm border-2 border-white flex items-center justify-center group-hover:scale-110 transition-transform">
-                        <i className="fa-solid fa-play text-2xl ml-1"></i>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* 左下のトゥクトゥク切り抜き画像 (仮の画像で代用) */}
-                  <div className="absolute -bottom-10 -left-16 w-40 h-auto z-20 hidden md:block transform rotate-6 hover:scale-110 transition-transform">
-                     {/* ここにトゥクトゥクの透過PNGが入る想定。仮画像 */}
-                     <img src="https://cdn-icons-png.flaticon.com/512/5024/5024483.png" className="w-full drop-shadow-xl" alt="TukTuk Icon" />
-                  </div>
-
-                  {/* 右側の縦書き Usage video */}
-                  <div className="absolute bottom-20 -right-12 writing-vertical text-xs tracking-[0.3em] text-gray-400 font-serif hidden md:block">
-                    Usage video
-                    <div className="w-px h-16 bg-gray-300 mt-4 mx-auto"></div>
-                  </div>
-                </div>
-
-                {/* 既存のモデルコースをこの下に配置 */}
-                <div className="mt-28">
+                
+                {/* 1. モデルコース (先に移動 & 画像差し替え) */}
+                <div className="mb-32">
                   <SectionTitle subtitle="MODEL COURSE" title="移動時間さえも、最高のアトラクションに。" />
                   <div className="relative">
                     <div className="hidden md:block absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-0.5 bg-gray-100"></div>
                     <div className="space-y-24">
                       {[
-                        { time: "10:00", label: "START", title: "店舗を出発", desc: "操作レクチャーを受けて、いざ出発！海風を感じる旅へ。", img: "https://placehold.co/600x400/00BDD6/FFFFFF?text=Start" },
-                        { time: "11:00", label: "SIGHTSEEING", title: "長谷寺・大仏", desc: "鎌倉の定番スポットへ。トゥクトゥクなら細い道もスイスイ移動。", img: "https://placehold.co/600x400/00BDD6/FFFFFF?text=Sightseeing" },
-                        { time: "13:00", label: "LUNCH & DRIVE", title: "134号線でランチ", desc: "海沿いのおしゃれなカフェでランチ。食後は絶景ドライブを堪能。", img: "https://placehold.co/600x400/00BDD6/FFFFFF?text=Lunch" },
-                        { time: "14:30", label: "AQUARIUM", title: "新江ノ島水族館", desc: "大人気の「えのすい」へ。イルカショーや幻想的なクラゲに癒やされるひととき。", img: "https://placehold.co/600x400/00BDD6/FFFFFF?text=Aquarium" },
-                        { time: "16:00", label: "GOAL", title: "店舗へ帰着", desc: "夕暮れ前の江ノ島でフィニッシュ。充実した1日を振り返りながら返却。", img: "https://placehold.co/600x400/00BDD6/FFFFFF?text=Goal" }
+                        { time: "10:00", label: "START", title: "店舗を出発", desc: "操作レクチャーを受けて、いざ出発！海風を感じる旅へ。", img: "https://images.unsplash.com/photo-1519451241324-20b4ea2c4220?auto=format&fit=crop&q=80&w=800" },
+                        { time: "11:00", label: "SIGHTSEEING", title: "長谷寺・大仏", desc: "鎌倉の定番スポットへ。トゥクトゥクなら細い道もスイスイ移動。", img: "https://images.unsplash.com/photo-1565595963-c79a40590a9d?auto=format&fit=crop&q=80&w=800" },
+                        { time: "13:00", label: "LUNCH & DRIVE", title: "134号線でランチ", desc: "海沿いのおしゃれなカフェでランチ。食後は絶景ドライブを堪能。", img: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&q=80&w=800" },
+                        { time: "14:30", label: "AQUARIUM", title: "新江ノ島水族館", desc: "大人気の「えのすい」へ。イルカショーや幻想的なクラゲに癒やされるひととき。", img: "https://images.unsplash.com/photo-1544256658-05b180373072?auto=format&fit=crop&q=80&w=800" },
+                        { time: "16:00", label: "GOAL", title: "店舗へ帰着", desc: "夕暮れ前の江ノ島でフィニッシュ。充実した1日を振り返りながら返却。", img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=800" }
                       ].map((step, idx) => (
                         <div key={idx} className={`reveal flex flex-col md:flex-row items-center gap-12 ${idx % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}>
-                          <div className="w-full md:w-1/2"><div className="relative rounded-[40px] overflow-hidden shadow-2xl border-4 border-gray-50"><img src={step.img} className="w-full h-72 object-cover" /><div className="absolute top-6 left-6 glass px-5 py-2 rounded-full text-cyan-600 font-bold text-xs">{step.time} | {step.label}</div></div></div>
+                          <div className="w-full md:w-1/2"><div className="relative rounded-[40px] overflow-hidden shadow-2xl border-4 border-gray-50"><img src={step.img} className="w-full h-72 object-cover" alt={step.title} /><div className="absolute top-6 left-6 glass px-5 py-2 rounded-full text-cyan-600 font-bold text-xs">{step.time} | {step.label}</div></div></div>
                           <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-cyan-500 border-4 border-white z-10"></div>
                           <div className={`w-full md:w-1/2 ${idx % 2 !== 0 ? 'md:text-right' : 'md:text-left'}`}><h4 className="text-2xl font-bold text-gray-800 mb-4">{step.title}</h4><p className="text-gray-500 text-lg">{step.desc}</p></div>
                         </div>
@@ -324,6 +303,53 @@
                     </div>
                   </div>
                 </div>
+
+                {/* 2. デートプラン (動画) (後に移動) */}
+                <div className="reveal">
+                   <div className="text-center mb-12">
+                     <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-800">最新！鎌倉デートプラン！</h2>
+                     <p className="text-gray-500">
+                       <span className="bg-gray-200 text-gray-700 px-2 py-1 text-sm font-bold mr-2">最新</span>
+                       の観光地をまとめたデートプラン！<br className="hidden md:block"/>
+                       グルメから景色の良いスポットまで、様々な鎌倉の魅力をご紹介！
+                     </p>
+                  </div>
+
+                  <div className="relative max-w-sm mx-auto">
+                    {/* 右上の集中線あしらい */}
+                    <div className="absolute -top-12 -right-16 w-32 h-32 opacity-50 text-cyan-400 text-6xl">
+                      <i className="fa-regular fa-sun fa-spin-pulse" style={{animationDuration: '10s'}}></i>
+                    </div>
+                    <div className="absolute -top-10 -right-20 space-y-2 hidden md:block">
+                       <div className="w-10 h-0.5 bg-cyan-400 rotate-[-15deg]"></div>
+                       <div className="w-8 h-0.5 bg-cyan-400 rotate-[-10deg] ml-4"></div>
+                    </div>
+
+                    {/* 動画枠 */}
+                    <div className="aspect-[9/16] bg-black rounded-xl overflow-hidden shadow-2xl relative border-4 border-white group cursor-pointer">
+                      <img src="https://images.unsplash.com/photo-1542640244-7e67286feb8f?auto=format&fit=crop&q=80&w=600" className="w-full h-full object-cover opacity-80 group-hover:opacity-60 transition-opacity" alt="Movie Thumbnail" />
+                      <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
+                        <p className="text-sm font-bold mb-2 drop-shadow-md">\ 9割が知らない！ /</p>
+                        <h3 className="text-2xl font-bold mb-6 drop-shadow-md">最新！鎌倉デートプラン</h3>
+                        <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm border-2 border-white flex items-center justify-center group-hover:scale-110 transition-transform">
+                          <i className="fa-solid fa-play text-2xl ml-1"></i>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* 左下のトゥクトゥク切り抜き画像 (仮のアイコン) */}
+                    <div className="absolute -bottom-10 -left-16 w-40 h-auto z-20 hidden md:block transform rotate-6 hover:scale-110 transition-transform">
+                       <img src="https://cdn-icons-png.flaticon.com/512/5024/5024483.png" className="w-full drop-shadow-xl" alt="TukTuk Icon" />
+                    </div>
+
+                    {/* 右側の縦書き Usage video */}
+                    <div className="absolute bottom-20 -right-12 writing-vertical text-xs tracking-[0.3em] text-gray-400 font-serif hidden md:block">
+                      Usage video
+                      <div className="w-px h-16 bg-gray-300 mt-4 mx-auto"></div>
+                    </div>
+                  </div>
+                </div>
+
               </div>
             </section>
 
@@ -384,7 +410,7 @@
               </div>
             </section>
 
-            {/* 7. 店舗紹介 (Store Selection) (既存) */}
+            {/* 7. 店舗紹介 (Store Selection) */}
             <section id="booking" className="py-28 px-4 bg-white">
               <div className="max-w-7xl mx-auto">
                 <SectionTitle subtitle="STATIONS" title="店舗をお選びください" />
@@ -424,16 +450,16 @@
                     </div>
                   </div>
 
-                  {/* 片瀬江の島店 */}
-                   <div className="reveal bg-white rounded-[48px] border-4 border-indigo-50 p-8 md:p-12 shadow-2xl flex flex-col relative overflow-hidden">
+                  {/* 片瀬江の島店 (CTA修正：黄色) */}
+                   <div className="reveal bg-white rounded-[48px] border-4 border-orange-50 p-8 md:p-12 shadow-2xl flex flex-col relative overflow-hidden">
                     <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4">
                         <h3 className="text-3xl font-bold text-gray-800">片瀬江の島店</h3>
-                        <span className="bg-indigo-50 text-indigo-600 px-4 py-2 rounded-full text-xs font-bold tracking-widest border border-indigo-100">ODAKYU LINE</span>
+                        <span className="bg-orange-50 text-orange-600 px-4 py-2 rounded-full text-xs font-bold tracking-widest border border-orange-100">ODAKYU LINE</span>
                     </div>
 
                     <div className="space-y-8 mb-10 flex-grow">
                         <div className="flex items-start gap-5">
-                            <div className="w-12 h-12 rounded-2xl bg-indigo-50 flex items-center justify-center text-indigo-600 text-xl shrink-0">
+                            <div className="w-12 h-12 rounded-2xl bg-orange-50 flex items-center justify-center text-orange-600 text-xl shrink-0">
                                 <i className="fa-solid fa-train"></i>
                             </div>
                             <div>
@@ -442,7 +468,7 @@
                             </div>
                         </div>
                          <div className="flex items-start gap-5">
-                            <div className="w-12 h-12 rounded-2xl bg-indigo-50 flex items-center justify-center text-indigo-600 text-xl shrink-0">
+                            <div className="w-12 h-12 rounded-2xl bg-orange-50 flex items-center justify-center text-orange-600 text-xl shrink-0">
                                 <i className="fa-solid fa-location-dot"></i>
                             </div>
                             <div>
@@ -453,7 +479,7 @@
                     </div>
 
                     <div className="space-y-4">
-                        <a href="#" className="bg-gradient-to-r from-indigo-500 to-indigo-600 w-full py-5 rounded-2xl text-white font-bold text-center shadow-lg block hover:scale-[1.02] transition-transform">空き状況を確認して予約</a>
+                        <a href="#" className="gradient-btn-yellow w-full py-5 rounded-2xl text-white font-bold text-center shadow-lg block">空き状況を確認して予約</a>
                         <a href="#" className="w-full py-5 rounded-2xl bg-gray-50 text-gray-500 font-bold text-center border border-gray-100 block hover:bg-gray-100 transition-colors text-sm">GOOGLE MAPSで開く</a>
                     </div>
                   </div>
@@ -499,13 +525,13 @@
               </div>
             </section>
 
-            {/* Footer CTA (既存) */}
+            {/* Footer CTA (修正：片瀬江の島店を黄色に) */}
             <section className="py-40 bg-gray-950 text-white text-center relative overflow-hidden">
               <div className="max-w-4xl mx-auto px-4 relative z-10 reveal">
                 <h2 className="text-4xl md:text-6xl font-bold mb-10 leading-tight">湘南で最高の1day旅を送るなら<br />Emobi 江ノ島</h2>
                 <div className="flex flex-col sm:flex-row gap-6 justify-center">
                   <a href="#" className="gradient-btn px-12 py-6 rounded-full text-white font-bold text-xl">湘南江の島店</a>
-                  <a href="#" className="bg-white/5 hover:bg-white/10 px-12 py-6 rounded-full text-white font-bold text-xl border border-white/20">片瀬江の島店</a>
+                  <a href="#" className="gradient-btn-yellow px-12 py-6 rounded-full text-white font-bold text-xl">片瀬江の島店</a>
                 </div>
               </div>
             </section>
