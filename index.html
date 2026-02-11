@@ -71,6 +71,57 @@
         background: linear-gradient(transparent 60%, #fff566 60%);
         display: inline;
       }
+
+      /* 価格表用のスタイル */
+      .price-card-border {
+        border: 1px solid #333;
+      }
+      .price-card-border-blue {
+        border: 2px solid #3b82f6; /* Tailwind blue-500 equivalent */
+      }
+      .triangle-down {
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 10px solid #1f2937; /* gray-800 */
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .triangle-down-blue {
+        border-top-color: #3b82f6; /* blue-500 */
+      }
+      .dotted-line {
+        border-bottom: 2px dotted #e5e7eb;
+        flex-grow: 1;
+        margin: 0 1rem;
+        position: relative;
+        top: -4px;
+      }
+      .corner-ribbon {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 80px;
+        height: 80px;
+        overflow: hidden;
+      }
+      .ribbon-text {
+        position: absolute;
+        top: 18px;
+        right: -30px;
+        width: 120px;
+        background-color: #3b82f6;
+        color: white;
+        text-align: center;
+        transform: rotate(45deg);
+        font-size: 0.75rem;
+        font-weight: bold;
+        padding: 4px 0;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
     </style>
 
     <script type="importmap">
@@ -123,6 +174,46 @@
         );
       };
 
+      const PriceCard = ({ label, title, time, desc, priceWeekday, priceWeekend, note, isU25, ribbon }) => (
+        <div className={`relative bg-white p-6 md:p-8 flex flex-col items-center text-center reveal h-full ${isU25 ? 'price-card-border-blue' : 'price-card-border'}`}>
+          {ribbon && (
+            <div className="corner-ribbon">
+              <div className="ribbon-text">超絶お得</div>
+            </div>
+          )}
+          
+          <div className={`absolute -top-5 md:-top-6 left-1/2 -translate-x-1/2 px-4 py-2 text-white text-xs md:text-sm font-bold whitespace-nowrap shadow-md ${isU25 ? 'bg-blue-500' : 'bg-gray-800'}`}>
+            {label}
+            <div className={`triangle-down ${isU25 ? 'triangle-down-blue' : ''}`}></div>
+          </div>
+
+          <h3 className="text-2xl md:text-3xl font-bold mt-8 mb-4 text-gray-800 tracking-wider">{title}</h3>
+          
+          <div className="inline-block border border-gray-800 rounded-full px-6 py-1 mb-6 text-sm font-medium">
+            レンタル時間：{time}
+          </div>
+
+          <p className="text-sm text-gray-600 mb-8 leading-loose min-h-[4rem]">
+            {desc}
+          </p>
+
+          <div className="w-full space-y-4 mb-4">
+            <div className="flex items-baseline justify-between w-full">
+              <span className="text-sm md:text-base font-bold text-gray-700 whitespace-nowrap">{title.replace('プラン', '')}プラン(平日)</span>
+              <div className="dotted-line"></div>
+              <span className="text-2xl md:text-3xl font-bold text-gray-800 whitespace-nowrap">{priceWeekday}<span className="text-base font-normal ml-1">円</span></span>
+            </div>
+            <div className="flex items-baseline justify-between w-full">
+              <span className="text-sm md:text-base font-bold text-gray-700 whitespace-nowrap">{title.replace('プラン', '')}プラン(土日祝)</span>
+              <div className="dotted-line"></div>
+              <span className="text-2xl md:text-3xl font-bold text-gray-800 whitespace-nowrap">{priceWeekend}<span className="text-base font-normal ml-1">円</span></span>
+            </div>
+          </div>
+
+          {note && <p className="text-xs text-gray-500 mt-2 text-left w-full">{note}</p>}
+        </div>
+      );
+
       const App = () => {
         useEffect(() => {
           const observer = new IntersectionObserver(
@@ -143,7 +234,7 @@
         return (
           <div className="bg-white overflow-x-hidden text-gray-800 leading-loose">
             
-            {/* 1. Hero Section (FV) - デザイン修正：フォントサイズ縮小、明朝体、余白感 */}
+            {/* 1. Hero Section (FV) */}
             <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
               <div className="absolute inset-0 z-0">
                 <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=1920" className="w-full h-full object-cover brightness-[0.7]" alt="Shonan Beach" />
@@ -153,7 +244,6 @@
                 <div className="reveal active mb-12">
                   <span className="inline-block px-6 py-2 rounded-full bg-white/10 backdrop-blur-md text-white text-xs md:text-sm border border-white/20 mb-8 font-medium tracking-[0.2em] uppercase">電動トゥクトゥクレンタル</span>
                   
-                  {/* キャッチコピー修正：サイズを抑え、字間を広く、明朝体へ */}
                   <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-relaxed drop-shadow-2xl mb-8 tracking-widest font-serif">
                     湘南で最高の1day旅を。<br />
                     <span className="text-cyan-200 text-4xl md:text-6xl mt-4 inline-block">Emobi 江ノ島</span>
@@ -168,7 +258,6 @@
                   <a href="#booking" className="gradient-btn px-10 py-4 rounded-full text-white font-bold text-base shadow-2xl w-full sm:w-auto min-w-[240px] text-center tracking-widest">
                     湘南江の島店
                   </a>
-                  {/* 片瀬江の島店：黄色系に変更 */}
                   <a href="#booking" className="gradient-btn-yellow px-10 py-4 rounded-full text-white font-bold text-base shadow-2xl w-full sm:w-auto min-w-[240px] text-center tracking-widest">
                     片瀬江の島店
                   </a>
@@ -185,12 +274,10 @@
                 <div className="w-full lg:w-3/5 reveal relative">
                   <div className="relative rounded-[20px] overflow-hidden shadow-2xl">
                     <img src="https://images.unsplash.com/photo-1622359216719-74d758f5049b?auto=format&fit=crop&q=80&w=1000" alt="Emobi driving coastal road" className="w-full h-auto object-cover aspect-[4/3]" />
-                    {/* 縦書きコピー */}
                     <div className="absolute top-0 right-8 md:right-12 -translate-y-12 bg-white/90 backdrop-blur-sm px-4 py-8 shadow-lg writing-vertical font-serif text-xl md:text-3xl text-cyan-600 font-bold tracking-widest h-[120%] z-10 hidden md:block border border-white/50">
                        ここにあり。<br/><span className="mt-4 inline-block">鎌倉の正解。</span>
                     </div>
                   </div>
-                  {/* 装飾 */}
                   <div className="absolute -top-10 -left-10 text-cyan-200 text-6xl opacity-50"><i className="fa-solid fa-water"></i></div>
                   <div className="absolute -bottom-10 -right-10 w-40 h-1 bg-cyan-400"></div>
                 </div>
@@ -272,16 +359,15 @@
               </div>
             </section>
 
-            {/* 4. 具体的な楽しみ方（順序入れ替え：モデルコース → IF動画） */}
+            {/* 4. 具体的な楽しみ方 */}
             <section className="py-28 bg-white relative overflow-hidden">
-               {/* 背景装飾文字 */}
               <div className="absolute top-10 left-0 w-full text-center pointer-events-none select-none overflow-hidden">
                  <span className="text-[20vw] font-bold text-gray-50 opacity-50 font-serif leading-none">OPEN</span>
               </div>
 
               <div className="max-w-6xl mx-auto px-4 relative z-10">
                 
-                {/* 1. モデルコース (先に移動 & 画像差し替え) */}
+                {/* 1. モデルコース */}
                 <div className="mb-32">
                   <SectionTitle subtitle="MODEL COURSE" title="移動時間さえも、最高のアトラクションに。" />
                   <div className="relative">
@@ -304,7 +390,7 @@
                   </div>
                 </div>
 
-                {/* 2. デートプラン (動画) (後に移動) */}
+                {/* 2. デートプラン (動画) */}
                 <div className="reveal">
                    <div className="text-center mb-12">
                      <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-800">最新！鎌倉デートプラン！</h2>
@@ -316,7 +402,6 @@
                   </div>
 
                   <div className="relative max-w-sm mx-auto">
-                    {/* 右上の集中線あしらい */}
                     <div className="absolute -top-12 -right-16 w-32 h-32 opacity-50 text-cyan-400 text-6xl">
                       <i className="fa-regular fa-sun fa-spin-pulse" style={{animationDuration: '10s'}}></i>
                     </div>
@@ -325,7 +410,6 @@
                        <div className="w-8 h-0.5 bg-cyan-400 rotate-[-10deg] ml-4"></div>
                     </div>
 
-                    {/* 動画枠 */}
                     <div className="aspect-[9/16] bg-black rounded-xl overflow-hidden shadow-2xl relative border-4 border-white group cursor-pointer">
                       <img src="https://images.unsplash.com/photo-1542640244-7e67286feb8f?auto=format&fit=crop&q=80&w=600" className="w-full h-full object-cover opacity-80 group-hover:opacity-60 transition-opacity" alt="Movie Thumbnail" />
                       <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
@@ -337,12 +421,10 @@
                       </div>
                     </div>
 
-                    {/* 左下のトゥクトゥク切り抜き画像 (仮のアイコン) */}
                     <div className="absolute -bottom-10 -left-16 w-40 h-auto z-20 hidden md:block transform rotate-6 hover:scale-110 transition-transform">
                        <img src="https://cdn-icons-png.flaticon.com/512/5024/5024483.png" className="w-full drop-shadow-xl" alt="TukTuk Icon" />
                     </div>
 
-                    {/* 右側の縦書き Usage video */}
                     <div className="absolute bottom-20 -right-12 writing-vertical text-xs tracking-[0.3em] text-gray-400 font-serif hidden md:block">
                       Usage video
                       <div className="w-px h-16 bg-gray-300 mt-4 mx-auto"></div>
@@ -353,12 +435,11 @@
               </div>
             </section>
 
-            {/* 5. 利用者の声 (既存) */}
+            {/* 5. 利用者の声 */}
             <section className="py-28 px-4 bg-gray-50">
               <div className="max-w-7xl mx-auto">
                 <SectionTitle subtitle="TESTIMONIALS" title={`江ノ島から乗ってよかった！\n体験者の声`} />
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  {/* Review 1 */}
                   <div className="reveal bg-white rounded-[40px] p-10 md:p-14 shadow-xl border border-gray-100">
                     <div className="flex text-yellow-400 text-lg mb-6 gap-1">
                         <i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i>
@@ -370,7 +451,6 @@
                     <p className="text-cyan-600 font-bold text-sm tracking-wider">20代女性 / グループ</p>
                   </div>
                   
-                  {/* Review 2 */}
                   <div className="reveal bg-white rounded-[40px] p-10 md:p-14 shadow-xl border border-gray-100">
                       <div className="flex text-yellow-400 text-lg mb-6 gap-1">
                         <i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i>
@@ -385,7 +465,7 @@
               </div>
             </section>
 
-            {/* 6. 冬でもOK (All Weather) (既存) */}
+            {/* 6. 冬でもOK */}
             <section className="py-28 px-4 bg-gray-950 text-white relative">
               <div className="max-w-7xl mx-auto">
                 <SectionTitle subtitle="ALL-WEATHER" title="「今日は風が強いから…」と諦めないで。" dark />
@@ -410,7 +490,7 @@
               </div>
             </section>
 
-            {/* 7. 店舗紹介 (Store Selection) */}
+            {/* 7. 店舗紹介 */}
             <section id="booking" className="py-28 px-4 bg-white">
               <div className="max-w-7xl mx-auto">
                 <SectionTitle subtitle="STATIONS" title="店舗をお選びください" />
@@ -450,7 +530,7 @@
                     </div>
                   </div>
 
-                  {/* 片瀬江の島店 (CTA修正：黄色) */}
+                  {/* 片瀬江の島店 */}
                    <div className="reveal bg-white rounded-[48px] border-4 border-orange-50 p-8 md:p-12 shadow-2xl flex flex-col relative overflow-hidden">
                     <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4">
                         <h3 className="text-3xl font-bold text-gray-800">片瀬江の島店</h3>
@@ -488,8 +568,60 @@
               </div>
             </section>
 
-            {/* 8. FAQ (既存) */}
-            <section className="py-28 px-4 bg-gray-50">
+            {/* 8. Price (新規追加) */}
+            <section id="price" className="py-28 px-4 bg-gray-50">
+              <div className="max-w-7xl mx-auto">
+                {/* Custom Title for Price */}
+                <div className="text-center mb-24 reveal">
+                  <div className="flex justify-center items-center gap-2 mb-4 text-gray-600 text-sm tracking-widest">
+                    <span className="transform -rotate-12 inline-block border-t border-gray-400 w-4"></span>
+                    <span>サービス料金</span>
+                    <span className="transform rotate-12 inline-block border-t border-gray-400 w-4"></span>
+                  </div>
+                  <h2 className="text-5xl md:text-6xl font-serif text-cyan-500 tracking-widest uppercase" style={{ background: 'linear-gradient(to bottom, #60a5fa, #22d3ee)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+                    PRICE
+                  </h2>
+                </div>
+
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+                  {/* Standard Plan */}
+                  <PriceCard 
+                    label="鎌倉満喫の王道プラン！"
+                    title="スタンダードプラン"
+                    time="4時間"
+                    desc="4時間で海も山もグルメも全部満喫できる通常プランです。"
+                    priceWeekday="7,980"
+                    priceWeekend="8,980"
+                  />
+                  
+                  {/* Morning Plan */}
+                  <PriceCard 
+                    label="午前から利用すると特別価格！"
+                    title="モーニングプラン"
+                    time="4時間"
+                    desc="午前から観光したい方におすすめです。通常プランより金額を抑えてレンタルすることが可能です！"
+                    priceWeekday="4,980"
+                    priceWeekend="5,980"
+                    note="※モーニングプランは午前11時までに出発する方のみ利用可能です。"
+                  />
+                  
+                  {/* U25 Plan */}
+                  <PriceCard 
+                    label="25歳以下なら、もっとお得に！"
+                    title="U25プラン"
+                    time="4時間"
+                    desc="ご利用者様全員が25歳以下であれば適用可能なコスパ最強！お得プランです。"
+                    priceWeekday="4,980"
+                    priceWeekend="5,980"
+                    isU25={true}
+                    ribbon={true}
+                  />
+                </div>
+              </div>
+            </section>
+
+            {/* 9. FAQ (背景色をwhiteに変更) */}
+            <section className="py-28 px-4 bg-white">
               <div className="max-w-4xl mx-auto">
                 <SectionTitle subtitle="FAQ" title="よくあるご質問" />
                 <div className="reveal space-y-4">
@@ -525,7 +657,7 @@
               </div>
             </section>
 
-            {/* Footer CTA (修正：片瀬江の島店を黄色に) */}
+            {/* Footer CTA */}
             <section className="py-40 bg-gray-950 text-white text-center relative overflow-hidden">
               <div className="max-w-4xl mx-auto px-4 relative z-10 reveal">
                 <h2 className="text-4xl md:text-6xl font-bold mb-10 leading-tight">湘南で最高の1day旅を送るなら<br />Emobi 江ノ島</h2>
