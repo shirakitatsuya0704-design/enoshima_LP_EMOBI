@@ -4,18 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Emobi 江ノ島エリア - 電動トゥクトゥクレンタル</title>
-    <meta name="description" content="A high-end landing page for electric tuk-tuk rentals in the Enoshima area, featuring responsive design, rich imagery, and smooth scroll animations." />
+    <meta name="description" content="鎌倉・江ノ島エリアの電動トゥクトゥクレンタル。混雑を避けた新しい観光スタイルをご提案します。" />
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Shippori+Mincho:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
       body { font-family: 'Zen Kaku Gothic New', sans-serif; }
+      .font-serif { font-family: 'Shippori Mincho', serif; }
       .glass {
         background: rgba(255, 255, 255, 0.7);
         backdrop-filter: blur(10px);
@@ -37,6 +38,12 @@
       }
       .gradient-btn:hover { transform: scale(1.05); }
       
+      /* 縦書き用 */
+      .writing-vertical {
+        writing-mode: vertical-rl;
+        text-orientation: upright;
+      }
+
       /* アコーディオンのアニメーション用 */
       .faq-content {
         max-height: 0;
@@ -48,6 +55,12 @@
       }
       .faq-item.open .faq-icon {
         transform: rotate(180deg);
+      }
+      
+      /* マーカー風の下線 */
+      .marker-yellow {
+        background: linear-gradient(transparent 60%, #fff566 60%);
+        display: inline;
       }
     </style>
 
@@ -120,10 +133,11 @@
 
         return (
           <div className="bg-white overflow-x-hidden text-gray-800 leading-loose">
-            {/* 1. Hero Section */}
+            
+            {/* 1. Hero Section (FV) */}
             <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
               <div className="absolute inset-0 z-0">
-                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=1920" className="w-full h-full object-cover brightness-[0.7]" />
+                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=1920" className="w-full h-full object-cover brightness-[0.7]" alt="Shonan Beach" />
                 <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60"></div>
               </div>
               <div className="relative z-10 text-center px-4 max-w-5xl">
@@ -142,62 +156,210 @@
               </div>
             </section>
 
-            {/* 2. Alert Notice */}
-            <div className="bg-cyan-50/50 border-y border-cyan-100 py-5 px-4">
-              <div className="max-w-4xl mx-auto flex items-center gap-4">
-                <div className="w-10 h-10 rounded-full bg-cyan-100 flex items-center justify-center text-cyan-600 shrink-0"><i className="fa-solid fa-circle-exclamation"></i></div>
-                <p className="text-sm md:text-base text-cyan-800 font-medium leading-relaxed">ご注意：こちらは【江ノ島エリア】の予約ページです。「鎌倉駅前店」のご予約は<a href="#" className="mx-1 text-cyan-600 underline font-bold decoration-2 underline-offset-4 hover:text-cyan-500 transition-colors">こちら</a>からお願いします。</p>
-              </div>
-            </div>
-
-            {/* 3. Pain Points */}
-            <section className="py-28 px-4 max-w-7xl mx-auto text-center">
-              <SectionTitle subtitle="COMMON ISSUES" title={`せっかくの湘南旅行。\n移動のストレスで台無しになることも多いのが現実。`} />
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-                {[
-                  { img: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&q=80&w=600", text: "江ノ電が激混みで\n予定通りに乗れない…" },
-                  { img: "https://images.unsplash.com/photo-1506941433945-99a2f4bd77f2?auto=format&fit=crop&q=80&w=600", text: "海沿いを歩きたいけど、\n風が強くて体が冷え切る…" },
-                  { img: "https://images.unsplash.com/photo-1566611914066-8023485bd1b3?auto=format&fit=crop&q=80&w=600", text: "タクシーがつかまらず、\n渋滞で時間だけが過ぎていく…" }
-                ].map((item, idx) => (
-                  <div key={idx} className="reveal group relative h-80 rounded-[40px] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500">
-                    <img src={item.img} alt="Problem Scene" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-                    <div className="absolute bottom-10 left-0 right-0 px-8 text-center"><p className="text-white text-xl font-bold whitespace-pre-line leading-loose">{item.text}</p></div>
-                  </div>
-                ))}
-              </div>
-              <div className="reveal mt-24 flex flex-col items-center">
-                <p className="text-2xl md:text-3xl font-bold text-cyan-600 mb-6 tracking-wider">その悩み、「逆ルート」なら全て解決できます。</p>
-                <div className="w-px h-24 bg-gradient-to-b from-cyan-600 to-transparent"></div>
-              </div>
-            </section>
-
-            {/* 4. Solutions */}
-            <section className="py-28 bg-gray-50">
-              <div className="max-w-7xl mx-auto px-4">
-                <SectionTitle subtitle="THE SOLUTION" title="混雑を回避して、移動を思い出に。" />
-                <div className="space-y-24">
-                  {[
-                    { title: "混雑ゼロの「逆ルート」でスムーズに", desc: "多くの人は「鎌倉→江ノ島」へ向かいます。だからこそ、「江ノ島→鎌倉」への移動は比較的スムーズ。海を眺める最高のアクティビティに変えましょう。", img: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&q=80&w=800" },
-                    { title: "駅徒歩1分。「降車後すぐ」に出発", desc: "各駅から徒歩1分。重い荷物を持って歩き回る必要はありません。到着した瞬間から、あなただけの旅が始まります。", img: "https://images.unsplash.com/photo-1519451241324-20b4ea2c4220?auto=format&fit=crop&q=80&w=800", reverse: true },
-                    { title: "自分たちだけのプライベート空間", desc: "Bluetoothスピーカー完備。好きな音楽をBGMに、誰にも邪魔されないドライブ。撮影も、周りを気にせず思い切り楽しめます。", img: "https://images.unsplash.com/photo-1493225255756-d9584f8606e9?auto=format&fit=crop&q=80&w=800" }
-                  ].map((item, idx) => (
-                    <div key={idx} className={`reveal flex flex-col ${item.reverse ? 'md:flex-row-reverse' : 'md:flex-row'} items-center gap-12 md:gap-24`}>
-                      <div className="w-full md:w-1/2 overflow-hidden rounded-[48px] shadow-2xl">
-                        <img src={item.img} className="w-full h-full object-cover aspect-[4/3] hover:scale-105 transition-transform duration-700" />
-                      </div>
-                      <div className="w-full md:w-1/2">
-                        <span className="text-cyan-600 font-bold mb-4 block">POINT 0{idx + 1}</span>
-                        <h3 className="text-3xl font-bold mb-8 text-gray-800 leading-tight">{item.title}</h3>
-                        <p className="text-lg text-gray-500 leading-loose">{item.desc}</p>
-                      </div>
+            {/* 2. Emobiとは？ (新規実装) */}
+            <section className="py-24 md:py-32 px-4 max-w-7xl mx-auto">
+              <div className="flex flex-col lg:flex-row items-start gap-12 lg:gap-20">
+                <div className="w-full lg:w-3/5 reveal relative">
+                  <div className="relative rounded-[20px] overflow-hidden shadow-2xl">
+                    <img src="https://images.unsplash.com/photo-1622359216719-74d758f5049b?auto=format&fit=crop&q=80&w=1000" alt="Emobi driving coastal road" className="w-full h-auto object-cover aspect-[4/3]" />
+                    {/* 縦書きコピー */}
+                    <div className="absolute top-0 right-8 md:right-12 -translate-y-12 bg-white/90 backdrop-blur-sm px-4 py-8 shadow-lg writing-vertical font-serif text-xl md:text-3xl text-cyan-600 font-bold tracking-widest h-[120%] z-10 hidden md:block border border-white/50">
+                       ここにあり。<br/><span className="mt-4 inline-block">鎌倉の正解。</span>
                     </div>
-                  ))}
+                  </div>
+                  {/* 装飾 */}
+                  <div className="absolute -top-10 -left-10 text-cyan-200 text-6xl opacity-50"><i className="fa-solid fa-water"></i></div>
+                  <div className="absolute -bottom-10 -right-10 w-40 h-1 bg-cyan-400"></div>
+                </div>
+
+                <div className="w-full lg:w-2/5 reveal pt-8">
+                  <h2 className="text-3xl md:text-4xl font-bold leading-relaxed mb-10 text-gray-800">
+                    レンタカー、電車要らずで<br />
+                    <span className="marker-yellow">鎌倉・江ノ島をらくらく観光！</span>
+                  </h2>
+                  <div className="space-y-6 text-gray-600 text-lg leading-loose">
+                    <p>
+                      せっかくの鎌倉旅行、全部満喫したい。でも失敗したくない。だけど、手軽に楽しみたい。<br/>
+                      鎌倉・江ノ島観光にぴったりな令和の鉄板アクティビティ、それが電動トゥクトゥクEmobiです。
+                    </p>
+                    <p>
+                      レンタカーよりも安く簡単に、混雑する電車やバスよりも快適で、非日常感のある移動を約束します。
+                    </p>
+                    <p>
+                      大切な人とあなただけが乗るEmobiで海沿いを走ると感じる潮風の気持ちよさ、クセになります。可愛くて愛らしいEmobiがあなたの鎌倉旅を一生モノの思い出にします。
+                    </p>
+                  </div>
                 </div>
               </div>
             </section>
 
-            {/* 5. Features (All Weather) */}
+            {/* 3. Emobi江ノ島だからこそのおすすめ (内容刷新) */}
+            <section className="py-28 bg-gray-50">
+              <div className="max-w-7xl mx-auto px-4">
+                <SectionTitle subtitle="RECOMMEND" title="Emobi江ノ島だからこその体験" />
+                <div className="space-y-24">
+                  {/* Point 1 */}
+                  <div className="reveal flex flex-col md:flex-row items-center gap-12 md:gap-24">
+                    <div className="w-full md:w-1/2 overflow-hidden rounded-[48px] shadow-xl group">
+                      <img src="https://images.unsplash.com/photo-1571506821430-67c4d87053e1?auto=format&fit=crop&q=80&w=800" className="w-full h-full object-cover aspect-[4/3] group-hover:scale-105 transition-transform duration-700" alt="Aquarium" />
+                    </div>
+                    <div className="w-full md:w-1/2">
+                      <span className="text-cyan-600 font-bold mb-4 block tracking-widest">POINT 01</span>
+                      <h3 className="text-2xl md:text-3xl font-bold mb-6 text-gray-800 leading-tight">水族館・江ノ島本島観光に<br/>「プラスオン」で満足度UP</h3>
+                      <p className="text-lg text-gray-500 leading-loose">
+                        新江ノ島水族館や江島神社など、定番スポットを楽しんだ後はEmobiへ。
+                        徒歩では少し遠い絶景ポイントや隠れ家カフェへも、Emobiなら気軽にアクセス。
+                        いつもの観光に「ドライブ」をプラスするだけで、旅の充実度が劇的に変わります。
+                      </p>
+                    </div>
+                  </div>
+                  
+                  {/* Point 2 */}
+                  <div className="reveal flex flex-col md:flex-row-reverse items-center gap-12 md:gap-24">
+                    <div className="w-full md:w-1/2 overflow-hidden rounded-[48px] shadow-xl group">
+                      <img src="https://images.unsplash.com/photo-1549643276-fbc2bd5ca8d7?auto=format&fit=crop&q=80&w=800" className="w-full h-full object-cover aspect-[4/3] group-hover:scale-105 transition-transform duration-700" alt="Kamakura Drive" />
+                    </div>
+                    <div className="w-full md:w-1/2">
+                      <span className="text-cyan-600 font-bold mb-4 block tracking-widest">POINT 02</span>
+                      <h3 className="text-2xl md:text-3xl font-bold mb-6 text-gray-800 leading-tight">混雑回避の「鎌倉逆コース」<br/>賢く巡る、新しい正解</h3>
+                      <p className="text-lg text-gray-500 leading-loose">
+                        多くの人が鎌倉駅からスタートするため、江ノ電は大混雑。
+                        しかし江ノ島から鎌倉へ向かう「逆ルート」なら、比較的スムーズに移動可能。
+                        海沿いの爽快なドライブを楽しみながら、人混みを避けてスマートに鎌倉を目指せます。
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Point 3 */}
+                  <div className="reveal flex flex-col md:flex-row items-center gap-12 md:gap-24">
+                    <div className="w-full md:w-1/2 overflow-hidden rounded-[48px] shadow-xl group">
+                      <img src="https://images.unsplash.com/photo-1627705486790-28148b1d9dfd?auto=format&fit=crop&q=80&w=800" className="w-full h-full object-cover aspect-[4/3] group-hover:scale-105 transition-transform duration-700" alt="Shonan Coast" />
+                    </div>
+                    <div className="w-full md:w-1/2">
+                      <span className="text-cyan-600 font-bold mb-4 block tracking-widest">POINT 03</span>
+                      <h3 className="text-2xl md:text-3xl font-bold mb-6 text-gray-800 leading-tight">湘南・茅ヶ崎エリアまで<br/>足を延ばしてローカル旅</h3>
+                      <p className="text-lg text-gray-500 leading-loose">
+                        鎌倉だけではありません。サザンビーチちがさきや湘南海岸公園など、
+                        ローカルな魅力が詰まった西側エリアへもアクセス抜群。
+                        海風を感じながら、ガイドブックには載っていない「湘南の日常」を走る体験を。
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* 4. 具体的な楽しみ方（IF動画 & モデルコース） (新規デザイン適用) */}
+            <section className="py-28 bg-white relative overflow-hidden">
+               {/* 背景装飾文字 */}
+              <div className="absolute top-10 left-0 w-full text-center pointer-events-none select-none overflow-hidden">
+                 <span className="text-[20vw] font-bold text-gray-50 opacity-50 font-serif leading-none">OPEN</span>
+              </div>
+
+              <div className="max-w-6xl mx-auto px-4 relative z-10">
+                <div className="text-center mb-12 reveal">
+                   <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-800">最新！鎌倉デートプラン！</h2>
+                   <p className="text-gray-500">
+                     <span className="bg-gray-200 text-gray-700 px-2 py-1 text-sm font-bold mr-2">最新</span>
+                     の観光地をまとめたデートプラン！<br className="hidden md:block"/>
+                     グルメから景色の良いスポットまで、様々な鎌倉の魅力をご紹介！
+                   </p>
+                </div>
+
+                {/* 動画プレースホルダーエリア */}
+                <div className="relative max-w-sm mx-auto reveal">
+                  {/* 右上の集中線あしらい (CSSで簡易再現) */}
+                  <div className="absolute -top-12 -right-16 w-32 h-32 opacity-50 text-cyan-400 text-6xl">
+                    <i className="fa-regular fa-sun fa-spin-pulse" style={{animationDuration: '10s'}}></i>
+                  </div>
+                  <div className="absolute -top-10 -right-20 space-y-2 hidden md:block">
+                     <div className="w-10 h-0.5 bg-cyan-400 rotate-[-15deg]"></div>
+                     <div className="w-8 h-0.5 bg-cyan-400 rotate-[-10deg] ml-4"></div>
+                  </div>
+
+                  {/* 動画枠 */}
+                  <div className="aspect-[9/16] bg-black rounded-xl overflow-hidden shadow-2xl relative border-4 border-white group cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1542640244-7e67286feb8f?auto=format&fit=crop&q=80&w=600" className="w-full h-full object-cover opacity-80 group-hover:opacity-60 transition-opacity" alt="Movie Thumbnail" />
+                    <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
+                      <p className="text-sm font-bold mb-2 drop-shadow-md">\ 9割が知らない！ /</p>
+                      <h3 className="text-2xl font-bold mb-6 drop-shadow-md">最新！鎌倉デートプラン</h3>
+                      <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm border-2 border-white flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <i className="fa-solid fa-play text-2xl ml-1"></i>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* 左下のトゥクトゥク切り抜き画像 (仮の画像で代用) */}
+                  <div className="absolute -bottom-10 -left-16 w-40 h-auto z-20 hidden md:block transform rotate-6 hover:scale-110 transition-transform">
+                     {/* ここにトゥクトゥクの透過PNGが入る想定。仮画像 */}
+                     <img src="https://cdn-icons-png.flaticon.com/512/5024/5024483.png" className="w-full drop-shadow-xl" alt="TukTuk Icon" />
+                  </div>
+
+                  {/* 右側の縦書き Usage video */}
+                  <div className="absolute bottom-20 -right-12 writing-vertical text-xs tracking-[0.3em] text-gray-400 font-serif hidden md:block">
+                    Usage video
+                    <div className="w-px h-16 bg-gray-300 mt-4 mx-auto"></div>
+                  </div>
+                </div>
+
+                {/* 既存のモデルコースをこの下に配置 */}
+                <div className="mt-28">
+                  <SectionTitle subtitle="MODEL COURSE" title="移動時間さえも、最高のアトラクションに。" />
+                  <div className="relative">
+                    <div className="hidden md:block absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-0.5 bg-gray-100"></div>
+                    <div className="space-y-24">
+                      {[
+                        { time: "10:00", label: "START", title: "店舗を出発", desc: "操作レクチャーを受けて、いざ出発！海風を感じる旅へ。", img: "https://placehold.co/600x400/00BDD6/FFFFFF?text=Start" },
+                        { time: "11:00", label: "SIGHTSEEING", title: "長谷寺・大仏", desc: "鎌倉の定番スポットへ。トゥクトゥクなら細い道もスイスイ移動。", img: "https://placehold.co/600x400/00BDD6/FFFFFF?text=Sightseeing" },
+                        { time: "13:00", label: "LUNCH & DRIVE", title: "134号線でランチ", desc: "海沿いのおしゃれなカフェでランチ。食後は絶景ドライブを堪能。", img: "https://placehold.co/600x400/00BDD6/FFFFFF?text=Lunch" },
+                        { time: "14:30", label: "AQUARIUM", title: "新江ノ島水族館", desc: "大人気の「えのすい」へ。イルカショーや幻想的なクラゲに癒やされるひととき。", img: "https://placehold.co/600x400/00BDD6/FFFFFF?text=Aquarium" },
+                        { time: "16:00", label: "GOAL", title: "店舗へ帰着", desc: "夕暮れ前の江ノ島でフィニッシュ。充実した1日を振り返りながら返却。", img: "https://placehold.co/600x400/00BDD6/FFFFFF?text=Goal" }
+                      ].map((step, idx) => (
+                        <div key={idx} className={`reveal flex flex-col md:flex-row items-center gap-12 ${idx % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}>
+                          <div className="w-full md:w-1/2"><div className="relative rounded-[40px] overflow-hidden shadow-2xl border-4 border-gray-50"><img src={step.img} className="w-full h-72 object-cover" /><div className="absolute top-6 left-6 glass px-5 py-2 rounded-full text-cyan-600 font-bold text-xs">{step.time} | {step.label}</div></div></div>
+                          <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-cyan-500 border-4 border-white z-10"></div>
+                          <div className={`w-full md:w-1/2 ${idx % 2 !== 0 ? 'md:text-right' : 'md:text-left'}`}><h4 className="text-2xl font-bold text-gray-800 mb-4">{step.title}</h4><p className="text-gray-500 text-lg">{step.desc}</p></div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* 5. 利用者の声 (既存) */}
+            <section className="py-28 px-4 bg-gray-50">
+              <div className="max-w-7xl mx-auto">
+                <SectionTitle subtitle="TESTIMONIALS" title={`江ノ島から乗ってよかった！\n体験者の声`} />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  {/* Review 1 */}
+                  <div className="reveal bg-white rounded-[40px] p-10 md:p-14 shadow-xl border border-gray-100">
+                    <div className="flex text-yellow-400 text-lg mb-6 gap-1">
+                        <i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i>
+                    </div>
+                    <h3 className="text-xl md:text-2xl font-bold mb-6 text-gray-800">「寒さ対策が完璧でした！」</h3>
+                    <p className="text-gray-500 mb-8 leading-loose text-lg">
+                      冬の海沿いは寒いかなと心配でしたが、カバーと毛布のおかげで全然平気でした！むしろ車内は暖かくて、友達と音楽を聴きながら盛り上がれました。最高の思い出です。
+                    </p>
+                    <p className="text-cyan-600 font-bold text-sm tracking-wider">20代女性 / グループ</p>
+                  </div>
+                  
+                  {/* Review 2 */}
+                  <div className="reveal bg-white rounded-[40px] p-10 md:p-14 shadow-xl border border-gray-100">
+                      <div className="flex text-yellow-400 text-lg mb-6 gap-1">
+                        <i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i>
+                    </div>
+                    <h3 className="text-xl md:text-2xl font-bold mb-6 text-gray-800">「江ノ電を待たずに正解」</h3>
+                    <p className="text-gray-500 mb-8 leading-loose text-lg">
+                      駅のホームが人で溢れていたので、急遽Emobiを予約。結果、大正解でした。渋滞も裏道で回避できたし、何より海を見ながらの移動が最高にエモかったです！
+                    </p>
+                    <p className="text-cyan-600 font-bold text-sm tracking-wider">20代カップル</p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* 6. 冬でもOK (All Weather) (既存) */}
             <section className="py-28 px-4 bg-gray-950 text-white relative">
               <div className="max-w-7xl mx-auto">
                 <SectionTitle subtitle="ALL-WEATHER" title="「今日は風が強いから…」と諦めないで。" dark />
@@ -222,101 +384,7 @@
               </div>
             </section>
 
-            {/* 6. Model Course */}
-            <section className="py-28 px-4 bg-white">
-              <div className="max-w-5xl mx-auto">
-                <SectionTitle subtitle="MODEL COURSE" title="移動時間さえも、最高のアトラクションに。" />
-                <div className="relative">
-                  <div className="hidden md:block absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-0.5 bg-gray-100"></div>
-                  <div className="space-y-24">
-                    {[
-                      { time: "10:00", label: "START", title: "店舗を出発", desc: "操作レクチャーを受けて、いざ出発！海風を感じる旅へ。", img: "https://placehold.co/600x400/00BDD6/FFFFFF?text=Start" },
-                      { time: "11:00", label: "SIGHTSEEING", title: "長谷寺・大仏", desc: "鎌倉の定番スポットへ。トゥクトゥクなら細い道もスイスイ移動。", img: "https://placehold.co/600x400/00BDD6/FFFFFF?text=Sightseeing" },
-                      { time: "13:00", label: "LUNCH & DRIVE", title: "134号線でランチ", desc: "海沿いのおしゃれなカフェでランチ。食後は絶景ドライブを堪能。", img: "https://placehold.co/600x400/00BDD6/FFFFFF?text=Lunch" },
-                      { time: "14:30", label: "AQUARIUM", title: "新江ノ島水族館", desc: "大人気の「えのすい」へ。イルカショーや幻想的なクラゲに癒やされるひととき。", img: "https://placehold.co/600x400/00BDD6/FFFFFF?text=Aquarium" },
-                      { time: "16:00", label: "GOAL", title: "店舗へ帰着", desc: "夕暮れ前の江ノ島でフィニッシュ。充実した1日を振り返りながら返却。", img: "https://placehold.co/600x400/00BDD6/FFFFFF?text=Goal" }
-                    ].map((step, idx) => (
-                      <div key={idx} className={`reveal flex flex-col md:flex-row items-center gap-12 ${idx % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}>
-                        <div className="w-full md:w-1/2"><div className="relative rounded-[40px] overflow-hidden shadow-2xl border-4 border-gray-50"><img src={step.img} className="w-full h-72 object-cover" /><div className="absolute top-6 left-6 glass px-5 py-2 rounded-full text-cyan-600 font-bold text-xs">{step.time} | {step.label}</div></div></div>
-                        <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-cyan-500 border-4 border-white z-10"></div>
-                        <div className={`w-full md:w-1/2 ${idx % 2 !== 0 ? 'md:text-right' : 'md:text-left'}`}><h4 className="text-2xl font-bold text-gray-800 mb-4">{step.title}</h4><p className="text-gray-500 text-lg">{step.desc}</p></div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            {/* 7. FAQ Section */}
-            <section className="py-28 px-4 bg-gray-50">
-              <div className="max-w-4xl mx-auto">
-                <SectionTitle subtitle="FAQ" title="よくあるご質問" />
-                <div className="reveal space-y-4">
-                  <FAQItem 
-                    question="どのような免許があれば運転できますか？" 
-                    answer="普通自動車免許で運転いただけます。原付免許では運転できません。" 
-                  />
-                  <FAQItem 
-                    question="Emobiの運転は難しいですか？" 
-                    answer={<>足でのアクセル操作がなく、自転車に近い感覚で操作が可能ですが公道走行となるため安全運転への十分なご注意をお願いいたします。<br />初めての方は慎重な運転をお願いいたします。<br />出発前に運転方法ビデオの視聴をお願いしております。</>} 
-                  />
-                  <FAQItem 
-                    question="当日でも予約できますか？" 
-                    answer="カレンダーで×と表示されていても、電話にてお問い合わせいただければご利用いただける可能性があります。ぜひこちらまでお問い合わせください。(050-5536-5655)" 
-                  />
-                  <FAQItem 
-                    question="最高速度、走れる距離はどれくらいですか？" 
-                    answer={<>最高速度50km/hで、航続距離は40kmです。<br />4~6時間でのご利用であれば問題なくご利用いただけます。</>} 
-                  />
-                  <FAQItem 
-                    question="事故や故障しても大丈夫ですか？" 
-                    answer="NOC(ノンオペレーションチャージ)+修理費用が発生します。 ご利用の営業所によっては安心プランという免責補償をご用意しております。 ただし、補償の対象には条件がございます。" 
-                  />
-                  <FAQItem 
-                    question="料金体制はどのようになっていますか？" 
-                    answer="本サイトのPriceページをご覧ください。1台あたりの料金になりますので、ご友人やカップルなどで割っていただくと非常にお得です。" 
-                  />
-                  <FAQItem 
-                    question="子供の利用や年齢制限はありますか？" 
-                    answer={<>お子様は100cm未満の方はご利用いただけません。<br />また12歳以下のお子様は後部座席に1人での乗車はできません。70歳以上のお客様は後部座席への乗車は可能ですが、運転はできません。</>} 
-                  />
-                </div>
-              </div>
-            </section>
-
-            {/* 7.5 Testimonials (New) */}
-            <section className="py-28 px-4 bg-white">
-              <div className="max-w-7xl mx-auto">
-                <SectionTitle subtitle="TESTIMONIALS" title={`江ノ島から乗ってよかった！\n体験者の声`} />
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  {/* Review 1 */}
-                  <div className="reveal bg-white rounded-[40px] p-10 md:p-14 shadow-xl border border-gray-100">
-                    <div className="flex text-yellow-400 text-lg mb-6 gap-1">
-                       <i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i>
-                    </div>
-                    <h3 className="text-xl md:text-2xl font-bold mb-6 text-gray-800">「寒さ対策が完璧でした！」</h3>
-                    <p className="text-gray-500 mb-8 leading-loose text-lg">
-                      冬の海沿いは寒いかなと心配でしたが、カバーと毛布のおかげで全然平気でした！むしろ車内は暖かくて、友達と音楽を聴きながら盛り上がれました。最高の思い出です。
-                    </p>
-                    <p className="text-cyan-600 font-bold text-sm tracking-wider">20代女性 / グループ</p>
-                  </div>
-                  
-                  {/* Review 2 */}
-                  <div className="reveal bg-white rounded-[40px] p-10 md:p-14 shadow-xl border border-gray-100">
-                     <div className="flex text-yellow-400 text-lg mb-6 gap-1">
-                       <i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i><i className="fa-solid fa-star"></i>
-                    </div>
-                    <h3 className="text-xl md:text-2xl font-bold mb-6 text-gray-800">「江ノ電を待たずに正解」</h3>
-                    <p className="text-gray-500 mb-8 leading-loose text-lg">
-                      駅のホームが人で溢れていたので、急遽Emobiを予約。結果、大正解でした。渋滞も裏道で回避できたし、何より海を見ながらの移動が最高にエモかったです！
-                    </p>
-                    <p className="text-cyan-600 font-bold text-sm tracking-wider">20代カップル</p>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            {/* 8. Store Selection */}
+            {/* 7. 店舗紹介 (Store Selection) (既存) */}
             <section id="booking" className="py-28 px-4 bg-white">
               <div className="max-w-7xl mx-auto">
                 <SectionTitle subtitle="STATIONS" title="店舗をお選びください" />
@@ -394,7 +462,44 @@
               </div>
             </section>
 
-            {/* 10. Footer CTA */}
+            {/* 8. FAQ (既存) */}
+            <section className="py-28 px-4 bg-gray-50">
+              <div className="max-w-4xl mx-auto">
+                <SectionTitle subtitle="FAQ" title="よくあるご質問" />
+                <div className="reveal space-y-4">
+                  <FAQItem 
+                    question="どのような免許があれば運転できますか？" 
+                    answer="普通自動車免許で運転いただけます。原付免許では運転できません。" 
+                  />
+                  <FAQItem 
+                    question="Emobiの運転は難しいですか？" 
+                    answer={<>足でのアクセル操作がなく、自転車に近い感覚で操作が可能ですが公道走行となるため安全運転への十分なご注意をお願いいたします。<br />初めての方は慎重な運転をお願いいたします。<br />出発前に運転方法ビデオの視聴をお願いしております。</>} 
+                  />
+                  <FAQItem 
+                    question="当日でも予約できますか？" 
+                    answer="カレンダーで×と表示されていても、電話にてお問い合わせいただければご利用いただける可能性があります。ぜひこちらまでお問い合わせください。(050-5536-5655)" 
+                  />
+                  <FAQItem 
+                    question="最高速度、走れる距離はどれくらいですか？" 
+                    answer={<>最高速度50km/hで、航続距離は40kmです。<br />4~6時間でのご利用であれば問題なくご利用いただけます。</>} 
+                  />
+                  <FAQItem 
+                    question="事故や故障しても大丈夫ですか？" 
+                    answer="NOC(ノンオペレーションチャージ)+修理費用が発生します。 ご利用の営業所によっては安心プランという免責補償をご用意しております。 ただし、補償の対象には条件がございます。" 
+                  />
+                  <FAQItem 
+                    question="料金体制はどのようになっていますか？" 
+                    answer="本サイトのPriceページをご覧ください。1台あたりの料金になりますので、ご友人やカップルなどで割っていただくと非常にお得です。" 
+                  />
+                  <FAQItem 
+                    question="子供の利用や年齢制限はありますか？" 
+                    answer={<>お子様は100cm未満の方はご利用いただけません。<br />また12歳以下のお子様は後部座席に1人での乗車はできません。70歳以上のお客様は後部座席への乗車は可能ですが、運転はできません。</>} 
+                  />
+                </div>
+              </div>
+            </section>
+
+            {/* Footer CTA (既存) */}
             <section className="py-40 bg-gray-950 text-white text-center relative overflow-hidden">
               <div className="max-w-4xl mx-auto px-4 relative z-10 reveal">
                 <h2 className="text-4xl md:text-6xl font-bold mb-10 leading-tight">湘南で最高の1day旅を送るなら<br />Emobi 江ノ島</h2>
