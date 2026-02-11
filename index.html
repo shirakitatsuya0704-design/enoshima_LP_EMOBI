@@ -44,7 +44,7 @@
         transition: max-height 0.3s ease-out;
       }
       .faq-item.open .faq-content {
-        max-height: 300px; /* 内容が増えたため少し余裕を持たせる */
+        max-height: 300px;
       }
       .faq-item.open .faq-icon {
         transform: rotate(180deg);
@@ -119,7 +119,6 @@
         }, []);
 
         return (
-          // 行間を leading-relaxed から leading-loose に変更
           <div className="bg-white overflow-x-hidden text-gray-800 leading-loose">
             {/* 1. Hero Section */}
             <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
@@ -129,11 +128,9 @@
               </div>
               <div className="relative z-10 text-center px-4 max-w-5xl">
                 <div className="reveal active mb-8">
-                  {/* FV修正: Premium Mobility Experience → 電動トゥクトゥクレンタル */}
                   <span className="inline-block px-6 py-2 rounded-full bg-white/10 backdrop-blur-md text-white text-xs md:text-sm border border-white/20 mb-6 font-medium tracking-[0.2em] uppercase">電動トゥクトゥクレンタル</span>
-                  {/* FV修正: emobi → Emobi 江ノ島 */}
-                  <h1 className="text-4xl md:text-6xl lg:text-8xl font-bold text-white leading-tight drop-shadow-2xl mb-8 tracking-tight">湘南旅を、もっと自由に。<br /><span className="text-cyan-400">Emobi 江ノ島</span></h1>
-                  {/* FV修正: コピー変更 */}
+                  {/* FVコピー修正 */}
+                  <h1 className="text-4xl md:text-6xl lg:text-8xl font-bold text-white leading-tight drop-shadow-2xl mb-8 tracking-tight">最高の1day旅を江ノ島から<br /><span className="text-cyan-400">Emobi 江ノ島</span></h1>
                   <p className="text-lg md:text-2xl text-white/90 drop-shadow-md mb-12 max-w-3xl mx-auto leading-relaxed">江の島から鎌倉・湘南へ。旅の移動を、最高の思い出に。</p>
                 </div>
                 <div className="reveal active flex flex-col sm:flex-row gap-5 justify-center items-center">
@@ -166,7 +163,8 @@
                   <div key={idx} className="reveal group relative h-80 rounded-[40px] overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500">
                     <img src={item.img} alt="Problem Scene" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-                    <div className="absolute bottom-10 left-0 right-0 px-8 text-center"><p className="text-white text-xl font-bold whitespace-pre-line">{item.text}</p></div>
+                    {/* Common Issuesの行間をさらに広く設定 (leading-loose) */}
+                    <div className="absolute bottom-10 left-0 right-0 px-8 text-center"><p className="text-white text-xl font-bold whitespace-pre-line leading-loose">{item.text}</p></div>
                   </div>
                 ))}
               </div>
@@ -250,7 +248,7 @@
               </div>
             </section>
 
-            {/* 7. FAQ Section (Updated) */}
+            {/* 7. FAQ Section */}
             <section className="py-28 px-4 bg-gray-50">
               <div className="max-w-4xl mx-auto">
                 <SectionTitle subtitle="FAQ" title="よくあるご質問" />
@@ -287,21 +285,80 @@
               </div>
             </section>
 
-            {/* 8. Store Selection */}
+            {/* 8. Store Selection (Updated Design) */}
             <section id="booking" className="py-28 px-4 bg-white">
               <div className="max-w-7xl mx-auto">
                 <SectionTitle subtitle="STATIONS" title="店舗をお選びください" />
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                  <div className="reveal glass rounded-[56px] p-12 shadow-2xl border-t-8 border-cyan-400">
-                    <h3 className="text-3xl font-bold text-gray-800 mb-8">湘南江の島店</h3>
-                    <div className="flex items-start gap-5 text-gray-500 mb-12"><i className="fa-solid fa-train text-cyan-600 mt-1"></i><div><p className="font-bold text-gray-800">湘南モノレール・江ノ電</p><p className="text-sm">各駅から徒歩1〜2分</p></div></div>
-                    <a href="#" className="gradient-btn block py-6 rounded-3xl text-white font-bold text-center text-lg">空き状況を確認して予約</a>
+                  
+                  {/* 湘南江の島店 */}
+                  <div className="reveal bg-white rounded-[48px] border-4 border-cyan-50 p-8 md:p-12 shadow-2xl flex flex-col relative overflow-hidden">
+                    <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4">
+                        <h3 className="text-3xl font-bold text-gray-800">湘南江の島店</h3>
+                        <span className="bg-cyan-50 text-cyan-600 px-4 py-2 rounded-full text-xs font-bold tracking-widest border border-cyan-100">MONORAIL / ENODEN</span>
+                    </div>
+
+                    <div className="space-y-8 mb-10 flex-grow">
+                        <div className="flex items-start gap-5">
+                            <div className="w-12 h-12 rounded-2xl bg-cyan-50 flex items-center justify-center text-cyan-600 text-xl shrink-0">
+                                <i className="fa-solid fa-train"></i>
+                            </div>
+                            <div>
+                                <p className="font-bold text-gray-800 mb-1">対象路線</p>
+                                <p className="text-gray-500 text-sm font-medium">湘南モノレール・江ノ電をご利用の方</p>
+                            </div>
+                        </div>
+                         <div className="flex items-start gap-5">
+                            <div className="w-12 h-12 rounded-2xl bg-cyan-50 flex items-center justify-center text-cyan-600 text-xl shrink-0">
+                                <i className="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <p className="font-bold text-gray-800 mb-1">アクセス</p>
+                                <p className="text-gray-500 text-sm font-medium">湘南江の島駅 徒歩1分 / 江ノ島駅 徒歩2分</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="space-y-4">
+                        <a href="#" className="gradient-btn w-full py-5 rounded-2xl text-white font-bold text-center shadow-lg block">空き状況を確認して予約</a>
+                        <a href="#" className="w-full py-5 rounded-2xl bg-gray-50 text-gray-500 font-bold text-center border border-gray-100 block hover:bg-gray-100 transition-colors text-sm">GOOGLE MAPSで開く</a>
+                    </div>
                   </div>
-                  <div className="reveal glass rounded-[56px] p-12 shadow-2xl border-t-8 border-indigo-400">
-                    <h3 className="text-3xl font-bold text-gray-800">片瀬江の島店</h3>
-                    <div className="flex items-start gap-5 text-gray-500 mb-12"><i className="fa-solid fa-train-subway text-indigo-600 mt-1"></i><div><p className="font-bold text-gray-800">小田急線</p><p className="text-sm">片瀬江の島駅 徒歩1分</p></div></div>
-                    <a href="#" className="bg-gradient-to-r from-indigo-500 to-indigo-700 block py-6 rounded-3xl text-white font-bold text-center text-lg">空き状況を確認して予約</a>
+
+                  {/* 片瀬江の島店 */}
+                   <div className="reveal bg-white rounded-[48px] border-4 border-indigo-50 p-8 md:p-12 shadow-2xl flex flex-col relative overflow-hidden">
+                    <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4">
+                        <h3 className="text-3xl font-bold text-gray-800">片瀬江の島店</h3>
+                        <span className="bg-indigo-50 text-indigo-600 px-4 py-2 rounded-full text-xs font-bold tracking-widest border border-indigo-100">ODAKYU LINE</span>
+                    </div>
+
+                    <div className="space-y-8 mb-10 flex-grow">
+                        <div className="flex items-start gap-5">
+                            <div className="w-12 h-12 rounded-2xl bg-indigo-50 flex items-center justify-center text-indigo-600 text-xl shrink-0">
+                                <i className="fa-solid fa-train"></i>
+                            </div>
+                            <div>
+                                <p className="font-bold text-gray-800 mb-1">対象路線</p>
+                                <p className="text-gray-500 text-sm font-medium">小田急線（ロマンスカー等）をご利用の方</p>
+                            </div>
+                        </div>
+                         <div className="flex items-start gap-5">
+                            <div className="w-12 h-12 rounded-2xl bg-indigo-50 flex items-center justify-center text-indigo-600 text-xl shrink-0">
+                                <i className="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <p className="font-bold text-gray-800 mb-1">アクセス</p>
+                                <p className="text-gray-500 text-sm font-medium">片瀬江の島駅 徒歩1分</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="space-y-4">
+                        <a href="#" className="bg-gradient-to-r from-indigo-500 to-indigo-600 w-full py-5 rounded-2xl text-white font-bold text-center shadow-lg block hover:scale-[1.02] transition-transform">空き状況を確認して予約</a>
+                        <a href="#" className="w-full py-5 rounded-2xl bg-gray-50 text-gray-500 font-bold text-center border border-gray-100 block hover:bg-gray-100 transition-colors text-sm">GOOGLE MAPSで開く</a>
+                    </div>
                   </div>
+
                 </div>
               </div>
             </section>
