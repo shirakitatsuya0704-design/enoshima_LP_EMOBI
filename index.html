@@ -16,6 +16,7 @@
     
     <style>
       body { font-family: 'Zen Kaku Gothic New', sans-serif; }
+      /* フォント統一のためfont-serifクラスは使用しませんが定義は残します */
       .font-serif { font-family: 'Shippori Mincho', serif; }
       .glass {
         background: rgba(255, 255, 255, 0.7);
@@ -237,17 +238,22 @@
             {/* 1. Hero Section (FV) */}
             <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
               <div className="absolute inset-0 z-0">
-                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=1920" className="w-full h-full object-cover brightness-[0.7]" alt="Shonan Beach" />
-                <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60"></div>
+                {/* FV背景画像をemobi_FV.jpgに変更。視認性向上のためbrightnessを0.5に落とす */}
+                <img src="emobi_FV.jpg" className="w-full h-full object-cover brightness-[0.5]" alt="Shonan Beach" />
+                <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60"></div>
               </div>
               <div className="relative z-10 text-center px-4 max-w-5xl">
                 <div className="reveal active mb-12">
-                  <span className="inline-block px-6 py-2 rounded-full bg-white/10 backdrop-blur-md text-white text-xs md:text-sm border border-white/20 mb-8 font-medium tracking-[0.2em] uppercase">電動トゥクトゥクレンタル</span>
+                  {/* 背景色を変更して視認性を高める */}
+                  <span className="inline-block px-6 py-2 rounded-full bg-gray-900/80 backdrop-blur-md text-white text-xs md:text-sm border border-white/20 mb-8 font-medium tracking-[0.2em] uppercase">電動トゥクトゥクレンタル</span>
                   
-                  {/* FV Font modified here: Removed 'font-serif' to match body font */}
+                  {/* emobiの文字をロゴに差し替え。font-serifを削除してフォント統一 */}
                   <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-relaxed drop-shadow-2xl mb-8 tracking-widest">
                     湘南で最高の1day旅を。<br />
-                    <span className="text-cyan-200 text-4xl md:text-6xl mt-4 inline-block">Emobi 江ノ島</span>
+                    <div className="flex items-center justify-center gap-2 mt-4 flex-wrap">
+                      <img src="emobi_logo.webp" alt="Emobi" className="h-12 md:h-16 w-auto object-contain" />
+                      <span className="text-cyan-200 text-4xl md:text-6xl">江ノ島</span>
+                    </div>
                   </h1>
                 
                 </div>
@@ -271,8 +277,10 @@
               <div className="flex flex-col lg:flex-row items-start gap-12 lg:gap-20">
                 <div className="w-full lg:w-3/5 reveal relative">
                   <div className="relative rounded-[20px] overflow-hidden shadow-2xl">
-                    <img src="https://images.unsplash.com/photo-1622359216719-74d758f5049b?auto=format&fit=crop&q=80&w=1000" alt="Emobi driving coastal road" className="w-full h-auto object-cover aspect-[4/3]" />
-                    <div className="absolute top-0 right-8 md:right-12 -translate-y-12 bg-white/90 backdrop-blur-sm px-4 py-8 shadow-lg writing-vertical font-serif text-xl md:text-3xl text-cyan-600 font-bold tracking-widest h-[120%] z-10 hidden md:block border border-white/50">
+                    {/* 画像をemobi_FV.jpgに差し替え */}
+                    <img src="emobi_FV.jpg" alt="Emobi driving coastal road" className="w-full h-auto object-cover aspect-[4/3]" />
+                    {/* font-serifを削除してフォント統一 */}
+                    <div className="absolute top-0 right-8 md:right-12 -translate-y-12 bg-white/90 backdrop-blur-sm px-4 py-8 shadow-lg writing-vertical text-xl md:text-3xl text-cyan-600 font-bold tracking-widest h-[120%] z-10 hidden md:block border border-white/50">
                         ここにあり。<br/><span className="mt-4 inline-block">鎌倉の正解。</span>
                     </div>
                   </div>
@@ -354,7 +362,8 @@
             {/* 4. 具体的な楽しみ方 */}
             <section className="py-28 bg-white relative overflow-hidden">
               <div className="absolute top-10 left-0 w-full text-center pointer-events-none select-none overflow-hidden">
-                 <span className="text-[20vw] font-bold text-gray-50 opacity-50 font-serif leading-none">OPEN</span>
+                 {/* font-serifを削除してフォント統一 */}
+                 <span className="text-[20vw] font-bold text-gray-50 opacity-50 leading-none">OPEN</span>
               </div>
 
               <div className="max-w-6xl mx-auto px-4 relative z-10">
@@ -392,9 +401,9 @@
                         の観光地をまとめたデートプラン！<br className="hidden md:block"/>
                         グルメから景色の良いスポットまで、様々な鎌倉の魅力をご紹介！
                       </p>
-                   </div>
+                    </div>
 
-                   <div className="relative max-w-sm mx-auto">
+                    <div className="relative max-w-sm mx-auto">
                     <div className="absolute -top-12 -right-16 w-32 h-32 opacity-50 text-cyan-400 text-6xl">
                       <i className="fa-regular fa-sun fa-spin-pulse" style={{animationDuration: '10s'}}></i>
                     </div>
@@ -419,7 +428,8 @@
                        <img src="https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&q=80&w=300" className="w-full h-full object-cover" alt="TukTuk Image" />
                     </div>
 
-                    <div className="absolute bottom-20 -right-12 writing-vertical text-xs tracking-[0.3em] text-gray-400 font-serif hidden md:block">
+                    {/* font-serifを削除 */}
+                    <div className="absolute bottom-20 -right-12 writing-vertical text-xs tracking-[0.3em] text-gray-400 hidden md:block">
                       Usage video
                       <div className="w-px h-16 bg-gray-300 mt-4 mx-auto"></div>
                     </div>
@@ -484,7 +494,58 @@
               </div>
             </section>
 
-            {/* 7. 店舗紹介 */}
+            {/* 7. Price と 8. 店舗紹介 を入れ替え */}
+            
+            {/* 7. Price (元8) */}
+            <section id="price" className="py-28 px-4 bg-gray-50">
+              <div className="max-w-7xl mx-auto">
+                <div className="text-center mb-24 reveal">
+                  <div className="flex justify-center items-center gap-2 mb-4 text-gray-600 text-sm tracking-widest">
+                    <span className="transform -rotate-12 inline-block border-t border-gray-400 w-4"></span>
+                    <span>サービス料金</span>
+                    <span className="transform rotate-12 inline-block border-t border-gray-400 w-4"></span>
+                  </div>
+                  {/* font-serifを削除 */}
+                  <h2 className="text-5xl md:text-6xl text-cyan-500 tracking-widest uppercase font-bold" style={{ background: 'linear-gradient(to bottom, #60a5fa, #22d3ee)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+                    PRICE
+                  </h2>
+                </div>
+
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+                  <PriceCard 
+                    label="鎌倉満喫の王道プラン！"
+                    title="スタンダードプラン"
+                    time="4時間"
+                    desc="4時間で海も山もグルメも全部満喫できる通常プランです。"
+                    priceWeekday="7,980"
+                    priceWeekend="8,980"
+                  />
+                  
+                  <PriceCard 
+                    label="午前から利用すると特別価格！"
+                    title="モーニングプラン"
+                    time="4時間"
+                    desc="午前から観光したい方におすすめです。通常プランより金額を抑えてレンタルすることが可能です！"
+                    priceWeekday="4,980"
+                    priceWeekend="5,980"
+                    note="※モーニングプランは午前11時までに出発する方のみ利用可能です。"
+                  />
+                  
+                  <PriceCard 
+                    label="25歳以下なら、もっとお得に！"
+                    title="U25プラン"
+                    time="4時間"
+                    desc="ご利用者様全員が25歳以下であれば適用可能なコスパ最強！お得プランです。"
+                    priceWeekday="4,980"
+                    priceWeekend="5,980"
+                    isU25={true}
+                    ribbon={true}
+                  />
+                </div>
+              </div>
+            </section>
+
+            {/* 8. 店舗紹介 (元7) */}
             <section id="booking" className="py-28 px-4 bg-white">
               <div className="max-w-7xl mx-auto">
                 <SectionTitle subtitle="STATIONS" title="店舗をお選びください" />
@@ -558,54 +619,6 @@
                     </div>
                   </div>
 
-                </div>
-              </div>
-            </section>
-
-            {/* 8. Price */}
-            <section id="price" className="py-28 px-4 bg-gray-50">
-              <div className="max-w-7xl mx-auto">
-                <div className="text-center mb-24 reveal">
-                  <div className="flex justify-center items-center gap-2 mb-4 text-gray-600 text-sm tracking-widest">
-                    <span className="transform -rotate-12 inline-block border-t border-gray-400 w-4"></span>
-                    <span>サービス料金</span>
-                    <span className="transform rotate-12 inline-block border-t border-gray-400 w-4"></span>
-                  </div>
-                  <h2 className="text-5xl md:text-6xl font-serif text-cyan-500 tracking-widest uppercase" style={{ background: 'linear-gradient(to bottom, #60a5fa, #22d3ee)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-                    PRICE
-                  </h2>
-                </div>
-
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
-                  <PriceCard 
-                    label="鎌倉満喫の王道プラン！"
-                    title="スタンダードプラン"
-                    time="4時間"
-                    desc="4時間で海も山もグルメも全部満喫できる通常プランです。"
-                    priceWeekday="7,980"
-                    priceWeekend="8,980"
-                  />
-                  
-                  <PriceCard 
-                    label="午前から利用すると特別価格！"
-                    title="モーニングプラン"
-                    time="4時間"
-                    desc="午前から観光したい方におすすめです。通常プランより金額を抑えてレンタルすることが可能です！"
-                    priceWeekday="4,980"
-                    priceWeekend="5,980"
-                    note="※モーニングプランは午前11時までに出発する方のみ利用可能です。"
-                  />
-                  
-                  <PriceCard 
-                    label="25歳以下なら、もっとお得に！"
-                    title="U25プラン"
-                    time="4時間"
-                    desc="ご利用者様全員が25歳以下であれば適用可能なコスパ最強！お得プランです。"
-                    priceWeekday="4,980"
-                    priceWeekend="5,980"
-                    isU25={true}
-                    ribbon={true}
-                  />
                 </div>
               </div>
             </section>
