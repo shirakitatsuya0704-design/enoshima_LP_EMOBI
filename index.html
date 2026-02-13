@@ -369,7 +369,8 @@
             {/* 追加セクション: Emobiの特徴（比較表） */}
             <section className="py-20 bg-white">
               <div className="max-w-6xl mx-auto px-4">
-                <SectionTitle title="Emobiの特徴" subtitle="FEATURES" />
+                {/* 修正：タイトルにコピーを追加 */}
+                <SectionTitle title="お手軽価格でよくばり観光&#13;&#10;Emobiの特徴" subtitle="FEATURES" />
                 
                 <div className="reveal overflow-hidden rounded-[30px] shadow-lg border border-gray-100 bg-white">
                   <div className="grid grid-cols-3 text-center">
@@ -599,31 +600,28 @@
             </section>
 
             {/* 7. Price (更新: 2時間/4時間プラン) */}
-            {/* Price Section Header */}
-            <div className="text-center mb-16 reveal">
-                <div className="flex-1 text-center md:text-left">
-                  <p className="text-lg font-bold text-gray-800 mb-1">
-                    <span className="bg-yellow-200 px-1">3人で割れば、1人 1,660円〜</span>
-                  </p>
-                  <p className="text-sm text-gray-600">
-                    ランチ1回分の料金で、<br className="md:hidden" />移動も観光もアクティビティも全部込み。
-                  </p>
-                </div>
-            </div>
             
-            {/* 以下、既存のPriceCardが続く */}
             <section id="price" className="py-28 px-4 bg-gray-50">
               <div className="max-w-7xl mx-auto">
-                <div className="text-center mb-24 reveal">
-                  <div className="flex justify-center items-center gap-2 mb-4 text-gray-600 text-sm tracking-widest">
-                    <span className="transform -rotate-12 inline-block border-t border-gray-400 w-4"></span>
-                    <span>サービス料金</span>
-                    <span className="transform rotate-12 inline-block border-t border-gray-400 w-4"></span>
-                  </div>
-                  {/* font-serifを削除 */}
-                  <h2 className="text-5xl md:text-6xl text-cyan-500 tracking-widest uppercase font-bold" style={{ background: 'linear-gradient(to bottom, #60a5fa, #22d3ee)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+                {/* 修正：デザインを統一し、テキストを下に移動 */}
+                <div className="text-center mb-16 reveal text-gray-800">
+                  <p className="text-sm md:text-base font-bold mb-3 tracking-[0.2em] text-cyan-600">
                     PRICE
+                  </p>
+                  <h2 className="text-3xl md:text-5xl font-bold leading-tight whitespace-pre-line">
+                    料金プラン
                   </h2>
+                  <div className="w-16 h-1 mx-auto mt-6 rounded-full bg-cyan-500"></div>
+
+                  {/* 移動したコンテンツ */}
+                  <div className="mt-12">
+                     <p className="text-lg font-bold text-gray-800 mb-2">
+                       <span className="bg-yellow-200 px-1">3人で割れば、1人 1,660円〜</span>
+                     </p>
+                     <p className="text-sm text-gray-600 leading-relaxed">
+                       ランチ1回分の料金で、<br className="md:hidden" />移動も観光もアクティビティも全部込み。
+                     </p>
+                  </div>
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch max-w-5xl mx-auto">
@@ -679,7 +677,7 @@
                                 <p className="text-gray-500 text-sm font-medium">湘南モノレール・江ノ電をご利用の方</p>
                             </div>
                         </div>
-                         <div className="flex items-start gap-5">
+                          <div className="flex items-start gap-5">
                             <div className="w-12 h-12 rounded-2xl bg-cyan-50 flex items-center justify-center text-cyan-600 text-xl shrink-0">
                                 <i className="fa-solid fa-location-dot"></i>
                             </div>
@@ -713,7 +711,7 @@
                                 <p className="text-gray-500 text-sm font-medium">小田急線（ロマンスカー等）をご利用の方</p>
                             </div>
                         </div>
-                         <div className="flex items-start gap-5">
+                          <div className="flex items-start gap-5">
                             <div className="w-12 h-12 rounded-2xl bg-orange-50 flex items-center justify-center text-orange-600 text-xl shrink-0">
                                 <i className="fa-solid fa-location-dot"></i>
                             </div>
@@ -752,7 +750,7 @@
                                 小田急片瀬の島店 <i className="fa-solid fa-arrow-right ml-2"></i>
                             </a>
                         </div>
-                         <div className="flex flex-col sm:flex-row sm:items-center gap-4 flex-wrap">
+                          <div className="flex flex-col sm:flex-row sm:items-center gap-4 flex-wrap">
                             <span className="text-gray-800 font-bold text-lg">江ノ電、モノレールでいらっしゃる方は、</span>
                             <div className="flex items-center gap-2 flex-wrap">
                                 <a href="#" className="inline-flex items-center bg-gray-800 text-white px-6 py-3 rounded-lg font-bold hover:bg-gray-700 transition-colors shadow-md whitespace-nowrap">
@@ -766,7 +764,7 @@
                   
                   {/* Image Side */}
                   <div className="w-full lg:w-7/12 relative min-h-[400px] bg-blue-100">
-                     {/* 画像が右側で切れるようなデザインにするため object-cover と object-left を調整 */}
+                      {/* 画像が右側で切れるようなデザインにするため object-cover と object-left を調整 */}
                     <img src="mapemobi.png" alt="Emobi Station Map" className="absolute inset-0 w-full h-full object-cover" />
                   </div>
                 </div>
