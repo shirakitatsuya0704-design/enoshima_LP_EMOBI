@@ -366,37 +366,61 @@
               </div>
             </section>
 
-            {/* 追加セクション: Emobiの特徴（比較表） */}
+            {/* 追加セクション: Emobiの特徴（比較表） - 修正済み */}
             <section className="py-20 bg-white">
-              <div className="max-w-6xl mx-auto px-4">
-                {/* 修正：タイトルにコピーを追加 */}
-                <SectionTitle title="お手軽価格でよくばり観光&#13;&#10;Emobiの特徴" subtitle="FEATURES" />
+              <div className="max-w-4xl mx-auto px-4">
+                {/* 修正1: タイトルをシンプルにし、サマリ言葉を分離 */}
+                <SectionTitle title="Emobiの特徴" subtitle="FEATURES" />
                 
-                <div className="reveal overflow-hidden rounded-[30px] shadow-lg border border-gray-100 bg-white">
-                  <div className="grid grid-cols-3 text-center">
+                {/* 修正1の続き: 表のすぐ上にサマリ的な言葉として配置 */}
+                <p className="text-center text-lg md:text-2xl font-bold text-gray-800 mb-8 -mt-8">
+                  お手軽価格でよくばり観光
+                </p>
+                
+                {/* 修正2: スマホで見やすいレイアウトに変更 */}
+                <div className="reveal overflow-hidden rounded-[20px] md:rounded-[30px] shadow-lg border border-gray-100 bg-white text-sm md:text-base">
+                  {/* Grid設定: スマホ(md未満)は[ラベル幅固定_残り等分_残り等分]、PC(md以上)は[均等3列] */}
+                  <div className="grid grid-cols-[3.5rem_1fr_1fr] md:grid-cols-3 text-center">
+                    
                     {/* Header */}
-                    <div className="p-4 md:p-6 bg-gray-50 font-bold text-gray-600 flex items-center justify-center"></div>
-                    <div className="p-4 md:p-6 bg-cyan-500 text-white font-bold text-lg md:text-xl flex items-center justify-center">Emobi</div>
-                    <div className="p-4 md:p-6 bg-gray-50 text-gray-600 font-bold text-sm md:text-base flex items-center justify-center">その他交通機関</div>
+                    <div className="p-2 md:p-6 bg-gray-50 font-bold text-gray-600 flex items-center justify-center"></div>
+                    <div className="p-2 md:p-6 bg-cyan-500 text-white font-bold text-base md:text-xl flex items-center justify-center">Emobi</div>
+                    <div className="p-2 md:p-6 bg-gray-50 text-gray-600 font-bold text-xs md:text-base flex items-center justify-center">
+                      その他<br className="md:hidden" />交通
+                    </div>
 
                     {/* Row 1 */}
-                    <div className="p-4 md:p-6 border-t border-gray-100 font-bold text-gray-700 flex items-center justify-center bg-gray-50 text-sm md:text-base">巡れる<br className="md:hidden"/>スポット数</div>
-                    <div className="p-4 md:p-6 border-t border-cyan-100 bg-cyan-50 text-cyan-800 font-bold flex items-center justify-center text-sm md:text-base leading-relaxed">
-                      鎌倉・江ノ島・逗子を<br/>1日目で巡れる
+                    <div className="p-2 md:p-6 border-t border-gray-100 font-bold text-gray-700 flex items-center justify-center bg-gray-50 text-xs md:text-base leading-tight">
+                      スポット
                     </div>
-                    <div className="p-4 md:p-6 border-t border-gray-100 text-gray-500 flex items-center justify-center text-sm md:text-base leading-relaxed">どこか1箇所のみ</div>
+                    <div className="p-2 md:p-6 border-t border-cyan-100 bg-cyan-50 text-cyan-800 font-bold flex items-center justify-center text-xs md:text-base leading-relaxed">
+                      鎌倉・江ノ島<br />逗子も巡れる
+                    </div>
+                    <div className="p-2 md:p-6 border-t border-gray-100 text-gray-500 flex items-center justify-center text-xs md:text-base leading-relaxed">
+                      どこか<br />1箇所のみ
+                    </div>
 
                     {/* Row 2 */}
-                    <div className="p-4 md:p-6 border-t border-gray-100 font-bold text-gray-700 flex items-center justify-center bg-gray-50 text-sm md:text-base">移動の<br className="md:hidden"/>ストレス</div>
-                    <div className="p-4 md:p-6 border-t border-cyan-100 bg-cyan-50 text-cyan-800 font-bold flex items-center justify-center text-sm md:text-base leading-relaxed">
-                      渋滞知らずで<br/>スイスイ
+                    <div className="p-2 md:p-6 border-t border-gray-100 font-bold text-gray-700 flex items-center justify-center bg-gray-50 text-xs md:text-base leading-tight">
+                      移動
                     </div>
-                    <div className="p-4 md:p-6 border-t border-gray-100 text-gray-500 flex items-center justify-center text-sm md:text-base leading-relaxed">どれも混雑していて<br/>大変</div>
+                    <div className="p-2 md:p-6 border-t border-cyan-100 bg-cyan-50 text-cyan-800 font-bold flex items-center justify-center text-xs md:text-base leading-relaxed">
+                      渋滞知らずで<br />スイスイ
+                    </div>
+                    <div className="p-2 md:p-6 border-t border-gray-100 text-gray-500 flex items-center justify-center text-xs md:text-base leading-relaxed">
+                      混雑・渋滞<br />あり
+                    </div>
                     
                     {/* Row 3 */}
-                    <div className="p-4 md:p-6 border-t border-gray-100 font-bold text-gray-700 flex items-center justify-center bg-gray-50 text-sm md:text-base">料金</div>
-                    <div className="p-4 md:p-6 border-t border-cyan-100 bg-cyan-50 text-cyan-800 font-bold flex items-center justify-center text-lg md:text-xl">一人1300円程度~</div>
-                    <div className="p-4 md:p-6 border-t border-gray-100 text-gray-500 flex items-center justify-center text-sm md:text-base leading-relaxed">積み重なって<br/>意外とかかる</div>
+                    <div className="p-2 md:p-6 border-t border-gray-100 font-bold text-gray-700 flex items-center justify-center bg-gray-50 text-xs md:text-base leading-tight">
+                      料金
+                    </div>
+                    <div className="p-2 md:p-6 border-t border-cyan-100 bg-cyan-50 text-cyan-800 font-bold flex items-center justify-center text-sm md:text-xl">
+                      1人<br/>1300円~
+                    </div>
+                    <div className="p-2 md:p-6 border-t border-gray-100 text-gray-500 flex items-center justify-center text-xs md:text-base leading-relaxed">
+                      意外と<br />かかる
+                    </div>
                   </div>
                 </div>
               </div>
@@ -611,12 +635,12 @@
 
                   {/* 移動したコンテンツ */}
                   <div className="mt-12">
-                     <p className="text-lg font-bold text-gray-800 mb-2">
-                       <span className="bg-yellow-200 px-1">3人で割れば、1人 1,660円〜</span>
-                     </p>
-                     <p className="text-sm text-gray-600 leading-relaxed">
-                       ランチ1回分の料金で、<br className="md:hidden" />移動も観光もアクティビティも全部込み。
-                     </p>
+                      <p className="text-lg font-bold text-gray-800 mb-2">
+                        <span className="bg-yellow-200 px-1">3人で割れば、1人 1,660円〜</span>
+                      </p>
+                      <p className="text-sm text-gray-600 leading-relaxed">
+                        ランチ1回分の料金で、<br className="md:hidden" />移動も観光もアクティビティも全部込み。
+                      </p>
                   </div>
                 </div>
 
