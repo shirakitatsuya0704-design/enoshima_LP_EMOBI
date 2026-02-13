@@ -275,7 +275,7 @@
                   <div className="relative rounded-[20px] overflow-hidden shadow-2xl">
                     <img src="https://images.unsplash.com/photo-1622359216719-74d758f5049b?auto=format&fit=crop&q=80&w=1000" alt="Emobi driving coastal road" className="w-full h-auto object-cover aspect-[4/3]" />
                     <div className="absolute top-0 right-8 md:right-12 -translate-y-12 bg-white/90 backdrop-blur-sm px-4 py-8 shadow-lg writing-vertical font-serif text-xl md:text-3xl text-cyan-600 font-bold tracking-widest h-[120%] z-10 hidden md:block border border-white/50">
-                       ここにあり。<br/><span className="mt-4 inline-block">鎌倉の正解。</span>
+                        ここにあり。<br/><span className="mt-4 inline-block">鎌倉の正解。</span>
                     </div>
                   </div>
                   <div className="absolute -top-10 -left-10 text-cyan-200 text-6xl opacity-50"><i className="fa-solid fa-water"></i></div>
@@ -367,7 +367,7 @@
 
               <div className="max-w-6xl mx-auto px-4 relative z-10">
                 
-                {/* 1. モデルコース */}
+                {/* 1. モデルコース (Updated) */}
                 <div className="mb-32">
                   <SectionTitle subtitle="MODEL COURSE" title="移動時間さえも、最高のアトラクションに。" />
                   <div className="relative">
@@ -375,8 +375,9 @@
                     <div className="space-y-24">
                       {[
                         { time: "10:00", label: "START", title: "店舗を出発", desc: "操作レクチャーを受けて、いざ出発！海風を感じる旅へ。", img: "https://images.unsplash.com/photo-1519451241324-20b4ea2c4220?auto=format&fit=crop&q=80&w=800" },
-                        { time: "11:00", label: "SIGHTSEEING", title: "長谷寺・大仏", desc: "鎌倉の定番スポットへ。トゥクトゥクなら細い道もスイスイ移動。", img: "https://images.unsplash.com/photo-1565595963-c79a40590a9d?auto=format&fit=crop&q=80&w=800" },
-                        { time: "13:00", label: "LUNCH & DRIVE", title: "134号線でランチ", desc: "海沿いのおしゃれなカフェでランチ。食後は絶景ドライブを堪能。", img: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&q=80&w=800" },
+                        { time: "10:30", label: "PHOTO SPOT", title: "鎌倉高校前踏切", desc: "まずはスラムダンクの聖地へ！午前中の江ノ島→鎌倉方面（134号線）は渋滞知らず。混雑とは無縁の快適ドライブ！", img: "https://images.unsplash.com/photo-1602662059345-420dd755d386?auto=format&fit=crop&q=80&w=800" },
+                        { time: "11:30", label: "SIGHTSEEING", title: "長谷寺・鎌倉大仏", desc: "鎌倉のシンボル「鎌倉大仏」へ。小回りの効くトゥクトゥクなら細い道もスイスイ移動して目的地へ直行！", img: "https://images.unsplash.com/photo-1565595963-c79a40590a9d?auto=format&fit=crop&q=80&w=800" },
+                        { time: "13:00", label: "LUNCH", title: "海沿いの「しらす屋」でランチ", desc: "海を眺めながら、湘南名物「しらす丼」に舌鼓。食後は134号線の絶景ドライブを堪能。", img: "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&q=80&w=800" },
                         { time: "14:30", label: "AQUARIUM", title: "新江ノ島水族館", desc: "大人気の「えのすい」へ。イルカショーや幻想的なクラゲに癒やされるひととき。", img: "https://images.unsplash.com/photo-1544256658-05b180373072?auto=format&fit=crop&q=80&w=800" },
                         { time: "16:00", label: "GOAL", title: "店舗へ帰着", desc: "夕暮れ前の江ノ島でフィニッシュ。充実した1日を振り返りながら返却。", img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=800" }
                       ].map((step, idx) => (
@@ -392,16 +393,16 @@
 
                 {/* 2. デートプラン (動画) */}
                 <div className="reveal">
-                   <div className="text-center mb-12">
-                     <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-800">最新！鎌倉デートプラン！</h2>
-                     <p className="text-gray-500">
-                       <span className="bg-gray-200 text-gray-700 px-2 py-1 text-sm font-bold mr-2">最新</span>
-                       の観光地をまとめたデートプラン！<br className="hidden md:block"/>
-                       グルメから景色の良いスポットまで、様々な鎌倉の魅力をご紹介！
-                     </p>
-                  </div>
+                    <div className="text-center mb-12">
+                      <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-800">最新！鎌倉デートプラン！</h2>
+                      <p className="text-gray-500">
+                        <span className="bg-gray-200 text-gray-700 px-2 py-1 text-sm font-bold mr-2">最新</span>
+                        の観光地をまとめたデートプラン！<br className="hidden md:block"/>
+                        グルメから景色の良いスポットまで、様々な鎌倉の魅力をご紹介！
+                      </p>
+                   </div>
 
-                  <div className="relative max-w-sm mx-auto">
+                   <div className="relative max-w-sm mx-auto">
                     <div className="absolute -top-12 -right-16 w-32 h-32 opacity-50 text-cyan-400 text-6xl">
                       <i className="fa-regular fa-sun fa-spin-pulse" style={{animationDuration: '10s'}}></i>
                     </div>
@@ -568,10 +569,9 @@
               </div>
             </section>
 
-            {/* 8. Price (新規追加) */}
+            {/* 8. Price */}
             <section id="price" className="py-28 px-4 bg-gray-50">
               <div className="max-w-7xl mx-auto">
-                {/* Custom Title for Price */}
                 <div className="text-center mb-24 reveal">
                   <div className="flex justify-center items-center gap-2 mb-4 text-gray-600 text-sm tracking-widest">
                     <span className="transform -rotate-12 inline-block border-t border-gray-400 w-4"></span>
@@ -584,7 +584,6 @@
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
-                  {/* Standard Plan */}
                   <PriceCard 
                     label="鎌倉満喫の王道プラン！"
                     title="スタンダードプラン"
@@ -594,7 +593,6 @@
                     priceWeekend="8,980"
                   />
                   
-                  {/* Morning Plan */}
                   <PriceCard 
                     label="午前から利用すると特別価格！"
                     title="モーニングプラン"
@@ -605,7 +603,6 @@
                     note="※モーニングプランは午前11時までに出発する方のみ利用可能です。"
                   />
                   
-                  {/* U25 Plan */}
                   <PriceCard 
                     label="25歳以下なら、もっとお得に！"
                     title="U25プラン"
@@ -620,7 +617,7 @@
               </div>
             </section>
 
-            {/* 9. FAQ (背景色をwhiteに変更) */}
+            {/* 9. FAQ */}
             <section className="py-28 px-4 bg-white">
               <div className="max-w-4xl mx-auto">
                 <SectionTitle subtitle="FAQ" title="よくあるご質問" />
