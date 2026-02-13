@@ -175,7 +175,7 @@
         );
       };
 
-      const PriceCard = ({ label, title, time, desc, priceWeekday, priceWeekend, note, isU25, ribbon }) => (
+      const PriceCard = ({ label, title, time, desc, price1, label1, price2, label2, note, isU25, ribbon }) => (
         <div className={`relative bg-white p-6 md:p-8 flex flex-col items-center text-center reveal h-full ${isU25 ? 'price-card-border-blue' : 'price-card-border'}`}>
           {ribbon && (
             <div className="corner-ribbon">
@@ -200,14 +200,14 @@
 
           <div className="w-full space-y-4 mb-4">
             <div className="flex items-baseline justify-between w-full">
-              <span className="text-sm md:text-base font-bold text-gray-700 whitespace-nowrap">{title.replace('プラン', '')}プラン(平日)</span>
+              <span className="text-sm md:text-base font-bold text-gray-700 whitespace-nowrap">{label1}</span>
               <div className="dotted-line"></div>
-              <span className="text-2xl md:text-3xl font-bold text-gray-800 whitespace-nowrap">{priceWeekday}<span className="text-base font-normal ml-1">円</span></span>
+              <span className="text-2xl md:text-3xl font-bold text-gray-800 whitespace-nowrap">{price1}<span className="text-base font-normal ml-1">円</span></span>
             </div>
             <div className="flex items-baseline justify-between w-full">
-              <span className="text-sm md:text-base font-bold text-gray-700 whitespace-nowrap">{title.replace('プラン', '')}プラン(土日祝)</span>
+              <span className="text-sm md:text-base font-bold text-gray-700 whitespace-nowrap">{label2}</span>
               <div className="dotted-line"></div>
-              <span className="text-2xl md:text-3xl font-bold text-gray-800 whitespace-nowrap">{priceWeekend}<span className="text-base font-normal ml-1">円</span></span>
+              <span className="text-2xl md:text-3xl font-bold text-gray-800 whitespace-nowrap">{price2}<span className="text-base font-normal ml-1">円</span></span>
             </div>
           </div>
 
@@ -282,7 +282,6 @@
                   <div className="relative rounded-[20px] overflow-hidden shadow-2xl">
                     {/* 画像をemobi_MV.webpに差し替え */}
                     <img src="emobi_MV.webp" alt="Emobi driving coastal road" className="w-full h-auto object-cover aspect-[4/3]" />
-                    {/* font-serifを削除してフォント統一 */}
                   </div>
                   <div className="absolute -top-10 -left-10 text-cyan-200 text-6xl opacity-50"><i className="fa-solid fa-water"></i></div>
                   <div className="absolute -bottom-10 -right-10 w-40 h-1 bg-cyan-400"></div>
@@ -298,6 +297,41 @@
                       Emobiは、自転車よりも快適に遠くへ、レンタカーよりも簡単に運転できる。<br/>
                       特別な移動体験を提供する3人乗り電動トゥクトゥクのレンタルサービスです。
                     </p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* 追加セクション: Emobiの特徴（比較表） */}
+            <section className="py-20 bg-white">
+              <div className="max-w-6xl mx-auto px-4">
+                <SectionTitle title="Emobiの特徴" subtitle="FEATURES" />
+                
+                <div className="reveal overflow-hidden rounded-[30px] shadow-lg border border-gray-100 bg-white">
+                  <div className="grid grid-cols-3 text-center">
+                    {/* Header */}
+                    <div className="p-4 md:p-6 bg-gray-50 font-bold text-gray-600 flex items-center justify-center"></div>
+                    <div className="p-4 md:p-6 bg-cyan-500 text-white font-bold text-lg md:text-xl flex items-center justify-center">Emobi</div>
+                    <div className="p-4 md:p-6 bg-gray-50 text-gray-600 font-bold text-sm md:text-base flex items-center justify-center">その他交通機関</div>
+
+                    {/* Row 1 */}
+                    <div className="p-4 md:p-6 border-t border-gray-100 font-bold text-gray-700 flex items-center justify-center bg-gray-50 text-sm md:text-base">巡れる<br className="md:hidden"/>スポット数</div>
+                    <div className="p-4 md:p-6 border-t border-cyan-100 bg-cyan-50 text-cyan-800 font-bold flex items-center justify-center text-sm md:text-base leading-relaxed">
+                      鎌倉・江ノ島・逗子を<br/>1日目で巡れる
+                    </div>
+                    <div className="p-4 md:p-6 border-t border-gray-100 text-gray-500 flex items-center justify-center text-sm md:text-base leading-relaxed">どこか1箇所のみ</div>
+
+                    {/* Row 2 */}
+                    <div className="p-4 md:p-6 border-t border-gray-100 font-bold text-gray-700 flex items-center justify-center bg-gray-50 text-sm md:text-base">移動の<br className="md:hidden"/>ストレス</div>
+                    <div className="p-4 md:p-6 border-t border-cyan-100 bg-cyan-50 text-cyan-800 font-bold flex items-center justify-center text-sm md:text-base leading-relaxed">
+                      渋滞知らずで<br/>スイスイ
+                    </div>
+                    <div className="p-4 md:p-6 border-t border-gray-100 text-gray-500 flex items-center justify-center text-sm md:text-base leading-relaxed">どれも混雑していて<br/>大変</div>
+                    
+                    {/* Row 3 */}
+                    <div className="p-4 md:p-6 border-t border-gray-100 font-bold text-gray-700 flex items-center justify-center bg-gray-50 text-sm md:text-base">料金</div>
+                    <div className="p-4 md:p-6 border-t border-cyan-100 bg-cyan-50 text-cyan-800 font-bold flex items-center justify-center text-lg md:text-xl">一人1300円程度~</div>
+                    <div className="p-4 md:p-6 border-t border-gray-100 text-gray-500 flex items-center justify-center text-sm md:text-base leading-relaxed">積み重なって<br/>意外とかかる</div>
                   </div>
                 </div>
               </div>
@@ -414,8 +448,8 @@
                       <i className="fa-regular fa-sun fa-spin-pulse" style={{animationDuration: '10s'}}></i>
                     </div>
                     <div className="absolute -top-10 -right-20 space-y-2 hidden md:block">
-                       <div className="w-10 h-0.5 bg-cyan-400 rotate-[-15deg]"></div>
-                       <div className="w-8 h-0.5 bg-cyan-400 rotate-[-10deg] ml-4"></div>
+                        <div className="w-10 h-0.5 bg-cyan-400 rotate-[-15deg]"></div>
+                        <div className="w-8 h-0.5 bg-cyan-400 rotate-[-10deg] ml-4"></div>
                     </div>
 
                     <div className="aspect-[9/16] bg-black rounded-xl overflow-hidden shadow-2xl relative border-4 border-white group cursor-pointer">
@@ -430,8 +464,8 @@
                     </div>
 
                     <div className="absolute -bottom-10 -left-16 w-40 h-40 z-20 hidden md:block transform rotate-6 hover:scale-110 transition-transform rounded-full overflow-hidden border-4 border-white shadow-lg">
-                       {/* Fixed image placeholder here */}
-                       <img src="https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&q=80&w=300" className="w-full h-full object-cover" alt="TukTuk Image" />
+                        {/* Fixed image placeholder here */}
+                        <img src="https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&q=80&w=300" className="w-full h-full object-cover" alt="TukTuk Image" />
                     </div>
 
                     {/* font-serifを削除 */}
@@ -500,7 +534,7 @@
               </div>
             </section>
 
-            {/* 7. Price (元8) */}
+            {/* 7. Price (更新: 2時間/4時間プラン) */}
             <section id="price" className="py-28 px-4 bg-gray-50">
               <div className="max-w-7xl mx-auto">
                 <div className="text-center mb-24 reveal">
@@ -515,36 +549,32 @@
                   </h2>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch max-w-5xl mx-auto">
+                  
+                  {/* 2時間プラン */}
                   <PriceCard 
-                    label="鎌倉満喫の王道プラン！"
-                    title="スタンダードプラン"
-                    time="4時間"
-                    desc="4時間で海も山もグルメも全部満喫できる通常プランです。"
-                    priceWeekday="7,980"
-                    priceWeekend="8,980"
+                    label="手軽に楽しみたい方に"
+                    title="2時間プラン"
+                    time="2時間"
+                    desc="江ノ島周辺の観光や、ちょっとしたドライブに最適なプランです。"
+                    label1="通常プラン"
+                    price1="4,980"
+                    label2="U25プラン"
+                    price2="3,980"
                   />
                   
+                  {/* 4時間プラン */}
                   <PriceCard 
-                    label="午前から利用すると特別価格！"
-                    title="モーニングプラン"
+                    label="鎌倉まで満喫するなら！"
+                    title="4時間プラン"
                     time="4時間"
-                    desc="午前から観光したい方におすすめです。通常プランより金額を抑えてレンタルすることが可能です！"
-                    priceWeekday="4,980"
-                    priceWeekend="5,980"
-                    note="※モーニングプランは午前11時までに出発する方のみ利用可能です。"
+                    desc="海も山もグルメも全部満喫できる、一番人気のスタンダードなプランです。"
+                    label1="通常プラン"
+                    price1="5,980"
+                    label2="U25プラン"
+                    price2="4,980"
                   />
                   
-                  <PriceCard 
-                    label="25歳以下なら、もっとお得に！"
-                    title="U25プラン"
-                    time="4時間"
-                    desc="ご利用者様全員が25歳以下であれば適用可能なコスパ最強！お得プランです。"
-                    priceWeekday="4,980"
-                    priceWeekend="5,980"
-                    isU25={true}
-                    ribbon={true}
-                  />
                 </div>
               </div>
             </section>
@@ -590,7 +620,7 @@
                   </div>
 
                   {/* 片瀬江の島店 */}
-                   <div className="reveal bg-white rounded-[48px] border-4 border-orange-50 p-8 md:p-12 shadow-2xl flex flex-col relative overflow-hidden">
+                    <div className="reveal bg-white rounded-[48px] border-4 border-orange-50 p-8 md:p-12 shadow-2xl flex flex-col relative overflow-hidden">
                     <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4">
                         <h3 className="text-3xl font-bold text-gray-800">片瀬江の島店</h3>
                         <span className="bg-orange-50 text-orange-600 px-4 py-2 rounded-full text-xs font-bold tracking-widest border border-orange-100">ODAKYU LINE</span>
