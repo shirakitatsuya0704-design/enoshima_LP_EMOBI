@@ -386,7 +386,7 @@
                         // 画像を差し替え (5番目: enoshima_ohashi.webp)
                         { time: "14:30", label: "AQUARIUM", title: "新江ノ島水族館", desc: "大人気の「えのすい」へ。イルカショーや幻想的なクラゲに癒やされるひととき。", img: "enoshima_ohashi.webp" },
                         // 画像を差し替え (6番目: enoshima_ohashi.webp)
-                        { time: "16:00", label: "GOAL", title: "店舗へ帰着", desc: "夕暮れ前の江ノ島でフィニッシュ。充実した1日を振り返りながら返却。", img: "enoshima_ohashi.webp" }
+                        { time: "16:00", label: "GOAL", title: "店舗へ帰着", desc: "夕暮れ前の江ノ島でフィニッシュ。充実した1日を振り返りながら返却。", img: "emobi_enoshima.webp" }
                       ].map((step, idx) => (
                         <div key={idx} className={`reveal flex flex-col md:flex-row items-center gap-12 ${idx % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}>
                           <div className="w-full md:w-1/2"><div className="relative rounded-[40px] overflow-hidden shadow-2xl border-4 border-gray-50"><img src={step.img} className="w-full h-72 object-cover" alt={step.title} /><div className="absolute top-6 left-6 glass px-5 py-2 rounded-full text-cyan-600 font-bold text-xs">{step.time} | {step.label}</div></div></div>
