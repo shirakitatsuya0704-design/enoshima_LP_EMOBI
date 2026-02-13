@@ -215,6 +215,69 @@
         </div>
       );
 
+      // カルーセルコンポーネントを追加
+      const ImageCarousel = () => {
+        const images = ["1.png", "2.png", "3.png", "4.png", "5.png", "6.png"];
+        const [currentIndex, setCurrentIndex] = useState(0);
+
+        const prevSlide = () => {
+          const isFirstSlide = currentIndex === 0;
+          const newIndex = isFirstSlide ? images.length - 1 : currentIndex - 1;
+          setCurrentIndex(newIndex);
+        };
+
+        const nextSlide = () => {
+          const isLastSlide = currentIndex === images.length - 1;
+          const newIndex = isLastSlide ? 0 : currentIndex + 1;
+          setCurrentIndex(newIndex);
+        };
+
+        const goToSlide = (slideIndex) => {
+          setCurrentIndex(slideIndex);
+        };
+
+        return (
+          <div className="relative w-full max-w-md mx-auto aspect-square group">
+            <div className="w-full h-full rounded-[20px] overflow-hidden shadow-2xl relative">
+              <img 
+                src={images[currentIndex]} 
+                alt={`Slide ${currentIndex + 1}`} 
+                className="w-full h-full object-cover transition-opacity duration-500"
+              />
+            </div>
+            
+            {/* Left Arrow */}
+            <button 
+              onClick={prevSlide} 
+              className="absolute top-1/2 -left-6 md:-left-8 -translate-y-1/2 bg-white w-10 h-10 md:w-12 md:h-12 rounded-full shadow-lg flex items-center justify-center text-gray-800 hover:bg-gray-50 transition-colors z-10 border border-gray-100"
+            >
+              <i className="fa-solid fa-chevron-left text-sm md:text-base"></i>
+            </button>
+
+            {/* Right Arrow */}
+            <button 
+              onClick={nextSlide} 
+              className="absolute top-1/2 -right-6 md:-right-8 -translate-y-1/2 bg-white w-10 h-10 md:w-12 md:h-12 rounded-full shadow-lg flex items-center justify-center text-gray-800 hover:bg-gray-50 transition-colors z-10 border border-gray-100"
+            >
+              <i className="fa-solid fa-chevron-right text-sm md:text-base"></i>
+            </button>
+
+            {/* Dots */}
+            <div className="flex justify-center py-4 gap-2 mt-4">
+              {images.map((_, slideIndex) => (
+                <div
+                  key={slideIndex}
+                  onClick={() => goToSlide(slideIndex)}
+                  className={`cursor-pointer transition-colors ${currentIndex === slideIndex ? 'text-gray-800' : 'text-gray-300 hover:text-gray-400'}`}
+                >
+                  <i className="fa-solid fa-circle text-[8px] md:text-[10px] align-middle p-1"></i>
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+      };
+
       const App = () => {
         useEffect(() => {
           const observer = new IntersectionObserver(
@@ -509,27 +572,26 @@
               </div>
             </section>
 
-            {/* 6. 冬でもOK */}
-            <section className="py-28 px-4 bg-gray-950 text-white relative">
-              <div className="max-w-7xl mx-auto">
-                <SectionTitle subtitle="ALL-WEATHER" title="「今日は風が強いから…」と諦めないで。" dark />
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                  <div className="reveal group bg-white/5 rounded-[56px] overflow-hidden border border-white/10">
-                    <img src="https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?auto=format&fit=crop&q=80&w=800" className="w-full h-72 object-cover" />
-                    <div className="p-12">
-                      <div className="w-16 h-16 rounded-2xl bg-cyan-500/20 flex items-center justify-center text-cyan-400 text-3xl mb-8"><i className="fa-solid fa-shield-halved"></i></div>
-                      <h3 className="text-2xl font-bold mb-6 text-white">雨風を完全ブロック「高透過性ホロ」</h3>
-                      <p className="text-gray-400 text-lg leading-relaxed">視界はクリアなまま、冷たい海風や突然の雨をシャットアウト。</p>
-                    </div>
+            {/* 6. 冬でもOK (Updated) */}
+            <section className="py-28 px-4 bg-white relative">
+              <div className="max-w-6xl mx-auto">
+                <div className="flex flex-col md:flex-row items-center justify-between gap-16 md:gap-24">
+                  
+                  {/* Text Side */}
+                  <div className="w-full md:w-5/12 reveal text-left">
+                    <h2 className="text-3xl md:text-4xl font-bold mb-8 text-blue-400 leading-tight">
+                      Emobiは冬でも快適！
+                    </h2>
+                    <p className="text-gray-600 text-lg leading-loose font-medium">
+                      『ホロ車両』の登場のおかげで、寒〜い冬風をシャットダウンし、快適にドライブ！
+                    </p>
                   </div>
-                  <div className="reveal group bg-white/5 rounded-[56px] overflow-hidden border border-white/10">
-                    <img src="https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&q=80&w=800" className="w-full h-72 object-cover" />
-                    <div className="p-12">
-                      <div className="w-16 h-16 rounded-2xl bg-orange-500/20 flex items-center justify-center text-orange-400 text-3xl mb-8"><i className="fa-solid fa-fire-flame-curved"></i></div>
-                      <h3 className="text-2xl font-bold mb-6 text-white">まるでこたつ？「暖房グッズ完備」</h3>
-                      <p className="text-gray-400 text-lg leading-relaxed">ふわふわのブランケットや高機能カイロを無料でご用意。</p>
-                    </div>
+
+                  {/* Carousel Side */}
+                  <div className="w-full md:w-6/12 reveal">
+                    <ImageCarousel />
                   </div>
+                  
                 </div>
               </div>
             </section>
