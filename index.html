@@ -215,7 +215,7 @@
         </div>
       );
 
-      // カルーセルコンポーネントを追加
+      // カルーセルコンポーネント (アスペクト比を1080x1350 = 4:5に変更)
       const ImageCarousel = () => {
         const images = ["1.png", "2.png", "3.png", "4.png", "5.png", "6.png"];
         const [currentIndex, setCurrentIndex] = useState(0);
@@ -237,7 +237,8 @@
         };
 
         return (
-          <div className="relative w-full max-w-md mx-auto aspect-square group">
+          // aspect-square を aspect-[4/5] に変更
+          <div className="relative w-full max-w-md mx-auto aspect-[4/5] group">
             <div className="w-full h-full rounded-[20px] overflow-hidden shadow-2xl relative">
               <img 
                 src={images[currentIndex]} 
@@ -715,6 +716,45 @@
                     </div>
                   </div>
 
+                </div>
+              </div>
+            </section>
+
+             {/* 追加セクション: 店舗拡大中 */}
+             <section className="py-20 px-4 bg-white">
+              <div className="max-w-7xl mx-auto">
+                <div className="reveal bg-gray-100 rounded-[40px] overflow-hidden flex flex-col lg:flex-row shadow-lg">
+                  {/* Text Side */}
+                  <div className="w-full lg:w-5/12 p-8 md:p-14 flex flex-col justify-center">
+                    <h2 className="text-3xl md:text-4xl font-bold mb-8 text-gray-800">湘南エリアで店舗拡大中</h2>
+                    <p className="text-gray-600 text-lg leading-loose mb-10">
+                      JR鎌倉駅、モノレール湘南江の島駅、小田急片瀬江ノ島駅など主要駅に展開。最寄りの店舗で借りて鎌倉・江ノ島を満喫しよう！
+                    </p>
+                    
+                    <div className="space-y-8">
+                        <div className="flex flex-col sm:flex-row sm:items-center gap-4 flex-wrap">
+                            <span className="text-gray-800 font-bold text-lg">小田急でいらっしゃる方は、</span>
+                            <a href="#" className="inline-flex items-center bg-gray-800 text-white px-6 py-3 rounded-lg font-bold hover:bg-gray-700 transition-colors shadow-md whitespace-nowrap">
+                                小田急片瀬の島店 <i className="fa-solid fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                         <div className="flex flex-col sm:flex-row sm:items-center gap-4 flex-wrap">
+                            <span className="text-gray-800 font-bold text-lg">江ノ電、モノレールでいらっしゃる方は、</span>
+                            <div className="flex items-center gap-2 flex-wrap">
+                                <a href="#" className="inline-flex items-center bg-gray-800 text-white px-6 py-3 rounded-lg font-bold hover:bg-gray-700 transition-colors shadow-md whitespace-nowrap">
+                                    湘南江の島店(無人) <i className="fa-solid fa-arrow-right ml-2"></i>
+                                </a>
+                                <span className="text-gray-800 font-bold text-lg">がおすすめです</span>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                  
+                  {/* Image Side */}
+                  <div className="w-full lg:w-7/12 relative min-h-[400px] bg-blue-100">
+                     {/* 画像が右側で切れるようなデザインにするため object-cover と object-left を調整 */}
+                    <img src="mapemobi.png" alt="Emobi Station Map" className="absolute inset-0 w-full h-full object-cover" />
+                  </div>
                 </div>
               </div>
             </section>
