@@ -141,9 +141,8 @@
     <script type="importmap">
     {
       "imports": {
-        "react": "https://esm.sh/react@19.0.0",
-        "react-dom/client": "https://esm.sh/react-dom@19.0.0/client",
-        "lucide-react": "https://esm.sh/lucide-react@0.263.1"
+        "react": "https://esm.sh/react@18.2.0",
+        "react-dom/client": "https://esm.sh/react-dom@18.2.0/client"
       }
     }
     </script>
@@ -154,11 +153,6 @@
     <script type="text/babel" data-type="module">
       import React, { useEffect, useState } from 'react';
       import ReactDOM from 'react-dom/client';
-      import { 
-        Clock, Smile, Camera, Utensils, Waves, Wind, Zap, 
-        TrendingUp, Frown, Heart, Sparkles, Loader2, 
-        MessageCircle, ChevronDown, MapPin, CheckCircle2 
-      } from 'lucide-react';
 
       // --- Components ---
 
@@ -294,7 +288,7 @@
         );
       };
 
-      // --- 新しい比較セクションコンポーネント ---
+      // --- 新しい比較セクションコンポーネント (LucideアイコンをFontAwesomeに置換) ---
       const ComparisonSection = () => {
         return (
           <div className="w-full max-w-6xl mx-auto px-4 py-20 reveal">
@@ -327,7 +321,7 @@
                 
                 <div className="mb-10 w-full flex flex-col items-center">
                   <div className="w-20 h-20 bg-[#E9ECEF] rounded-3xl flex items-center justify-center mb-8">
-                    <Clock className="w-10 h-10 text-slate-400" />
+                    <i className="fa-regular fa-clock text-4xl text-slate-400"></i>
                   </div>
                   <h4 className="text-2xl md:text-3xl font-black text-slate-400">徒歩・公共交通</h4>
                 </div>
@@ -344,20 +338,20 @@
 
                   {/* 装飾 */}
                   <div className="absolute top-12 right-12 opacity-20">
-                    <MessageCircle className="w-12 h-12 text-slate-400" />
+                    <i className="fa-regular fa-comment text-5xl text-slate-400"></i>
                   </div>
                   <div className="absolute bottom-12 left-12 flex items-center gap-2 opacity-50">
-                    <Loader2 className="w-5 h-5 text-slate-400 animate-spin" />
+                    <i className="fa-solid fa-spinner fa-spin text-xl text-slate-400"></i>
                     <span className="text-[10px] font-black text-slate-400">信号待ち 5分...</span>
                   </div>
                   <div className="absolute top-1/2 left-12 -translate-y-1/2 opacity-5">
-                    <Clock className="w-20 h-20" />
+                    <i className="fa-regular fa-clock text-8xl"></i>
                   </div>
                 </div>
 
                 <div className="mt-auto w-full">
                   <div className="bg-[#E9ECEF]/70 rounded-2xl py-4 px-8 inline-flex items-center gap-3 mb-10">
-                    <Camera className="w-5 h-5 text-slate-400" />
+                    <i className="fa-solid fa-camera text-xl text-slate-400"></i>
                     <span className="text-slate-500 font-black text-sm tracking-tighter">カメラロール：2枚</span>
                   </div>
                   <div className="w-full h-px bg-slate-200 mb-10" />
@@ -376,7 +370,7 @@
 
                 <div className="mb-10 w-full flex flex-col items-center">
                   <div className="w-20 h-20 bg-[#00BFFF] rounded-3xl flex items-center justify-center mb-8 shadow-2xl shadow-[#00BFFF]/40">
-                    <Zap className="w-10 h-10 text-white fill-current" />
+                    <i className="fa-solid fa-bolt text-4xl text-white"></i>
                   </div>
                   <h4 className="text-2xl md:text-3xl font-black text-slate-800">Emobiスタイル</h4>
                 </div>
@@ -405,15 +399,23 @@
                   </div>
 
                   {/* 装飾アイコン */}
-                  <Heart className="absolute top-2 right-6 w-10 h-10 text-pink-500 fill-current animate-pulse z-30" />
-                  <Sparkles className="absolute bottom-10 left-4 w-9 h-9 text-yellow-400 z-30" />
-                  <Smile className="absolute top-1/2 left-[-20px] w-12 h-12 text-[#00BFFF] fill-white z-30 shadow-xl rounded-full" />
-                  <Camera className="absolute bottom-[-15px] right-10 w-9 h-9 text-orange-400 z-30" />
+                  <div className="absolute top-2 right-6 z-30 animate-pulse text-pink-500">
+                    <i className="fa-solid fa-heart text-4xl"></i>
+                  </div>
+                  <div className="absolute bottom-10 left-4 z-30 text-yellow-400">
+                    <i className="fa-solid fa-wand-magic-sparkles text-4xl"></i>
+                  </div>
+                  <div className="absolute top-1/2 left-[-20px] z-30 text-[#00BFFF] bg-white rounded-full shadow-xl">
+                     <i className="fa-regular fa-face-smile text-5xl"></i>
+                  </div>
+                  <div className="absolute bottom-[-15px] right-10 z-30 text-orange-400">
+                    <i className="fa-solid fa-camera text-4xl"></i>
+                  </div>
                 </div>
 
                 <div className="mt-auto w-full">
                   <div className="bg-[#00BFFF] rounded-2xl py-4 px-10 inline-flex items-center gap-3 mb-10 shadow-2xl shadow-[#00BFFF]/30 group-hover:scale-110 transition-transform">
-                    <Camera className="w-5 h-5 text-white" />
+                    <i className="fa-solid fa-camera text-xl text-white"></i>
                     <span className="text-white font-black text-sm tracking-tighter uppercase">50+ Photos Captured</span>
                   </div>
                   <div className="w-full h-px bg-slate-100 mb-10" />
@@ -429,7 +431,7 @@
             <div className="mt-32 flex flex-col md:flex-row items-center justify-center gap-16 bg-slate-950 rounded-[4rem] p-12 md:p-20 text-white shadow-2xl">
               <div className="flex flex-col items-center md:items-start text-center md:text-left gap-6 max-w-lg">
                 <div className="inline-flex items-center gap-3 text-[#00BFFF] font-black text-xs md:text-sm uppercase tracking-[0.3em]">
-                  <TrendingUp className="w-6 h-6" /> Memory Density Efficiency
+                  <i className="fa-solid fa-arrow-trend-up text-xl"></i> Memory Density Efficiency
                 </div>
                 <h5 className="text-3xl md:text-4xl font-black leading-tight">
                   カメラロールの「厚み」が、<br />
@@ -442,7 +444,7 @@
               </div>
               <div className="flex-shrink-0">
                 <a href="#booking" className="px-16 py-8 bg-[#00BFFF] hover:bg-white hover:text-[#00BFFF] transition-all duration-500 text-white font-black text-2xl rounded-full shadow-[0_20px_60px_rgba(0,191,255,0.5)] flex items-center gap-5 group">
-                  <Zap className="w-9 h-9 group-hover:scale-125 transition-transform" />
+                  <i className="fa-solid fa-bolt text-2xl group-hover:scale-125 transition-transform"></i>
                   思い出を予約する
                 </a>
               </div>
