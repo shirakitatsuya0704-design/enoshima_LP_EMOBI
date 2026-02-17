@@ -11,13 +11,26 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Shippori+Mincho:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Shippori+Mincho:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
       body { font-family: 'Zen Kaku Gothic New', sans-serif; }
-      /* フォント統一のためfont-serifクラスは使用しませんが定義は残します */
-      .font-serif { font-family: 'Shippori Mincho', serif; }
+      
+      /* カスタムアニメーション */
+      @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-15px); }
+      }
+      .animate-float {
+        animation: float 5s ease-in-out infinite;
+      }
+
+      /* 画像グリッドのホバーエフェクト */
+      .photo-grid div { transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+      .photo-grid:hover div { filter: brightness(0.7); transform: scale(0.95); }
+      .photo-grid div:hover { filter: brightness(1); transform: scale(1.1) rotate(0deg) !important; z-index: 50; }
+
       .glass {
         background: rgba(255, 255, 255, 0.7);
         backdrop-filter: blur(10px);
@@ -129,7 +142,8 @@
     {
       "imports": {
         "react": "https://esm.sh/react@19.0.0",
-        "react-dom/client": "https://esm.sh/react-dom@19.0.0/client"
+        "react-dom/client": "https://esm.sh/react-dom@19.0.0/client",
+        "lucide-react": "https://esm.sh/lucide-react@0.263.1"
       }
     }
     </script>
@@ -140,6 +154,11 @@
     <script type="text/babel" data-type="module">
       import React, { useEffect, useState } from 'react';
       import ReactDOM from 'react-dom/client';
+      import { 
+        Clock, Smile, Camera, Utensils, Waves, Wind, Zap, 
+        TrendingUp, Frown, Heart, Sparkles, Loader2, 
+        MessageCircle, ChevronDown, MapPin, CheckCircle2 
+      } from 'lucide-react';
 
       // --- Components ---
 
@@ -215,7 +234,7 @@
         </div>
       );
 
-      // カルーセルコンポーネント (アスペクト比を1080x1350 = 4:5に変更)
+      // カルーセルコンポーネント
       const ImageCarousel = () => {
         const images = ["1.png", "2.png", "3.png", "4.png", "5.png", "6.png"];
         const [currentIndex, setCurrentIndex] = useState(0);
@@ -237,7 +256,6 @@
         };
 
         return (
-          // aspect-square を aspect-[4/5] に変更
           <div className="relative w-full max-w-md mx-auto aspect-[4/5] group">
             <div className="w-full h-full rounded-[20px] overflow-hidden shadow-2xl relative">
               <img 
@@ -247,7 +265,6 @@
               />
             </div>
             
-            {/* Left Arrow */}
             <button 
               onClick={prevSlide} 
               className="absolute top-1/2 -left-6 md:-left-8 -translate-y-1/2 bg-white w-10 h-10 md:w-12 md:h-12 rounded-full shadow-lg flex items-center justify-center text-gray-800 hover:bg-gray-50 transition-colors z-10 border border-gray-100"
@@ -255,7 +272,6 @@
               <i className="fa-solid fa-chevron-left text-sm md:text-base"></i>
             </button>
 
-            {/* Right Arrow */}
             <button 
               onClick={nextSlide} 
               className="absolute top-1/2 -right-6 md:-right-8 -translate-y-1/2 bg-white w-10 h-10 md:w-12 md:h-12 rounded-full shadow-lg flex items-center justify-center text-gray-800 hover:bg-gray-50 transition-colors z-10 border border-gray-100"
@@ -263,7 +279,6 @@
               <i className="fa-solid fa-chevron-right text-sm md:text-base"></i>
             </button>
 
-            {/* Dots */}
             <div className="flex justify-center py-4 gap-2 mt-4">
               {images.map((_, slideIndex) => (
                 <div
@@ -274,6 +289,163 @@
                   <i className="fa-solid fa-circle text-[8px] md:text-[10px] align-middle p-1"></i>
                 </div>
               ))}
+            </div>
+          </div>
+        );
+      };
+
+      // --- 新しい比較セクションコンポーネント ---
+      const ComparisonSection = () => {
+        return (
+          <div className="w-full max-w-6xl mx-auto px-4 py-20 reveal">
+            {/* タイトルエリア */}
+            <div className="text-center mb-20">
+              <p className="text-[#00BFFF] font-black text-xs md:text-sm tracking-[0.4em] uppercase mb-5">
+                Comparison
+              </p>
+              <h2 className="text-3xl md:text-5xl font-black text-slate-900 mb-8 tracking-tighter">
+                どっちの鎌倉を選びますか？
+              </h2>
+              <div className="w-24 h-1.5 bg-[#00BFFF] mx-auto rounded-full mb-16 shadow-[0_0_15px_rgba(0,191,255,0.4)]"></div>
+
+              <h3 className="text-2xl md:text-5xl font-black leading-tight text-slate-800 mb-6">
+                移動だけで終わる一日か、<br className="md:hidden" />
+                <span className="text-[#00BFFF]">思い出で溢れる一日か。</span>
+              </h3>
+              <p className="text-slate-500 font-bold text-xs md:text-base opacity-70">
+                左は「ただの移動」、右は「すべてがアトラクション」。
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-stretch">
+              
+              {/* 左カード：虚無の徒歩・電車 */}
+              <div className="bg-[#F8F9FA] rounded-[4rem] p-10 md:p-14 flex flex-col items-center text-center border border-slate-200 relative overflow-hidden shadow-sm">
+                <div className="absolute top-10 left-10 px-5 py-2 bg-[#E9ECEF] text-slate-500 text-[10px] font-black rounded-full uppercase tracking-widest">
+                  Wait & Move
+                </div>
+                
+                <div className="mb-10 w-full flex flex-col items-center">
+                  <div className="w-20 h-20 bg-[#E9ECEF] rounded-3xl flex items-center justify-center mb-8">
+                    <Clock className="w-10 h-10 text-slate-400" />
+                  </div>
+                  <h4 className="text-2xl md:text-3xl font-black text-slate-400">徒歩・公共交通</h4>
+                </div>
+
+                {/* 寂しい写真エリア */}
+                <div className="relative w-full aspect-[4/3] mb-12 flex items-center justify-center bg-white/40 rounded-[3rem] border-2 border-dashed border-slate-200">
+                  <div className="relative z-10 w-56 aspect-[4/3] rounded-[2rem] overflow-hidden border-4 border-white shadow-2xl grayscale brightness-90">
+                    <img 
+                      src="https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&q=80&w=600" 
+                      alt="Crowded Bus" 
+                      className="w-full h-full object-cover" 
+                    />
+                  </div>
+
+                  {/* 装飾 */}
+                  <div className="absolute top-12 right-12 opacity-20">
+                    <MessageCircle className="w-12 h-12 text-slate-400" />
+                  </div>
+                  <div className="absolute bottom-12 left-12 flex items-center gap-2 opacity-50">
+                    <Loader2 className="w-5 h-5 text-slate-400 animate-spin" />
+                    <span className="text-[10px] font-black text-slate-400">信号待ち 5分...</span>
+                  </div>
+                  <div className="absolute top-1/2 left-12 -translate-y-1/2 opacity-5">
+                    <Clock className="w-20 h-20" />
+                  </div>
+                </div>
+
+                <div className="mt-auto w-full">
+                  <div className="bg-[#E9ECEF]/70 rounded-2xl py-4 px-8 inline-flex items-center gap-3 mb-10">
+                    <Camera className="w-5 h-5 text-slate-400" />
+                    <span className="text-slate-500 font-black text-sm tracking-tighter">カメラロール：2枚</span>
+                  </div>
+                  <div className="w-full h-px bg-slate-200 mb-10" />
+                  <p className="text-slate-400 text-sm md:text-base font-bold leading-relaxed">
+                    「やっと着いた...」その一言で終わる旅。<br />
+                    景色よりもスマホの地図を見ている時間の方が長い。
+                  </p>
+                </div>
+              </div>
+
+              {/* 右カード：思い出爆発のEmobi */}
+              <div className="bg-white rounded-[4rem] p-10 md:p-14 flex flex-col items-center text-center border-[6px] border-[#00BFFF] shadow-[0_50px_100px_-20px_rgba(0,191,255,0.3)] animate-float relative z-10">
+                <div className="absolute top-10 left-10 px-5 py-2 bg-[#00BFFF] text-white text-[10px] font-black rounded-full uppercase tracking-widest shadow-lg shadow-[#00BFFF]/30">
+                  Memories Overflow
+                </div>
+
+                <div className="mb-10 w-full flex flex-col items-center">
+                  <div className="w-20 h-20 bg-[#00BFFF] rounded-3xl flex items-center justify-center mb-8 shadow-2xl shadow-[#00BFFF]/40">
+                    <Zap className="w-10 h-10 text-white fill-current" />
+                  </div>
+                  <h4 className="text-2xl md:text-3xl font-black text-slate-800">Emobiスタイル</h4>
+                </div>
+
+                {/* 爆発するグリッド写真：実際の観光写真に変更 */}
+                <div className="relative w-full aspect-[4/3] mb-12 group p-2 photo-grid">
+                  <div className="grid grid-cols-3 grid-rows-2 gap-3 h-full rounded-[2.5rem] overflow-hidden">
+                    <div className="relative overflow-hidden rounded-2xl rotate-[-4deg]">
+                      <img src="kamakurakoukoumae.jpg" className="h-full w-full object-cover" alt="Kamakura High School" />
+                    </div>
+                    <div className="relative overflow-hidden rounded-2xl rotate-[3deg]">
+                      <img src="shirasuya.jpeg" className="h-full w-full object-cover" alt="Shirasu Don" />
+                    </div>
+                    <div className="relative overflow-hidden rounded-2xl rotate-[-2deg] scale-110 z-10">
+                      <img src="emobi_enoshima.webp" className="h-full w-full object-cover" alt="Emobi TukTuk" />
+                    </div>
+                    <div className="relative overflow-hidden rounded-2xl rotate-[5deg]">
+                      <img src="enoshima_ohashi.webp" className="h-full w-full object-cover" alt="Enoshima Sea" />
+                    </div>
+                    <div className="relative overflow-hidden rounded-2xl rotate-[-1deg] scale-105 z-20 shadow-2xl">
+                      <img src="daibutsu.jpeg" className="h-full w-full object-cover" alt="Daibutsu" />
+                    </div>
+                    <div className="relative overflow-hidden rounded-2xl rotate-[6deg]">
+                      <img src="chigasaki.jpg" className="h-full w-full object-cover" alt="Drive" />
+                    </div>
+                  </div>
+
+                  {/* 装飾アイコン */}
+                  <Heart className="absolute top-2 right-6 w-10 h-10 text-pink-500 fill-current animate-pulse z-30" />
+                  <Sparkles className="absolute bottom-10 left-4 w-9 h-9 text-yellow-400 z-30" />
+                  <Smile className="absolute top-1/2 left-[-20px] w-12 h-12 text-[#00BFFF] fill-white z-30 shadow-xl rounded-full" />
+                  <Camera className="absolute bottom-[-15px] right-10 w-9 h-9 text-orange-400 z-30" />
+                </div>
+
+                <div className="mt-auto w-full">
+                  <div className="bg-[#00BFFF] rounded-2xl py-4 px-10 inline-flex items-center gap-3 mb-10 shadow-2xl shadow-[#00BFFF]/30 group-hover:scale-110 transition-transform">
+                    <Camera className="w-5 h-5 text-white" />
+                    <span className="text-white font-black text-sm tracking-tighter uppercase">50+ Photos Captured</span>
+                  </div>
+                  <div className="w-full h-px bg-slate-100 mb-10" />
+                  <p className="text-slate-700 text-sm md:text-base font-bold leading-relaxed">
+                    すべての道がシャッターチャンス。<br />
+                    帰りの電車で写真を見返す時間が、今日一番の幸せに。
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* サマリーエリア */}
+            <div className="mt-32 flex flex-col md:flex-row items-center justify-center gap-16 bg-slate-950 rounded-[4rem] p-12 md:p-20 text-white shadow-2xl">
+              <div className="flex flex-col items-center md:items-start text-center md:text-left gap-6 max-w-lg">
+                <div className="inline-flex items-center gap-3 text-[#00BFFF] font-black text-xs md:text-sm uppercase tracking-[0.3em]">
+                  <TrendingUp className="w-6 h-6" /> Memory Density Efficiency
+                </div>
+                <h5 className="text-3xl md:text-4xl font-black leading-tight">
+                  カメラロールの「厚み」が、<br />
+                  旅の充実度の証です。
+                </h5>
+                <p className="text-slate-400 text-sm font-medium">
+                  徒歩移動の「虚無」を、すべて「感動」へ。<br className="hidden md:block" />
+                  Emobiがあなたの鎌倉観光を、一生の思い出に変えます。
+                </p>
+              </div>
+              <div className="flex-shrink-0">
+                <a href="#booking" className="px-16 py-8 bg-[#00BFFF] hover:bg-white hover:text-[#00BFFF] transition-all duration-500 text-white font-black text-2xl rounded-full shadow-[0_20px_60px_rgba(0,191,255,0.5)] flex items-center gap-5 group">
+                  <Zap className="w-9 h-9 group-hover:scale-125 transition-transform" />
+                  思い出を予約する
+                </a>
+              </div>
             </div>
           </div>
         );
@@ -300,22 +472,18 @@
           <div className="bg-white overflow-x-hidden text-gray-800 leading-loose">
             
             {/* 1. Hero Section (FV) */}
-            {/* FVの縦幅を70vhに変更 */}
             <section className="relative h-[70vh] w-full flex items-center justify-center overflow-hidden">
               <div className="absolute inset-0 z-0">
-                {/* FV背景画像 */}
                 <img src="emobi_FV.jpg" className="w-full h-full object-cover brightness-[0.5]" alt="Shonan Beach" />
                 <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60"></div>
               </div>
               <div className="relative z-10 text-center px-4 max-w-5xl">
                 <div className="reveal active mb-12">
-                  {/* 背景色を変更して視認性を高める */}
                   <span className="inline-block px-6 py-2 rounded-full bg-gray-900/80 backdrop-blur-md text-white text-xs md:text-sm border border-white/20 mb-8 font-medium tracking-[0.2em] uppercase">電動トゥクトゥクレンタル</span>
                   
                   <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-relaxed drop-shadow-2xl mb-8 tracking-widest">
                     湘南で最高の1day旅を。<br />
                     <div className="flex items-center justify-center gap-4 mt-4 flex-wrap">
-                      {/* ロゴサイズを調整 (h-18 md:h-24 -> h-12 md:h-16) バランスをとるため */}
                       <img src="emobi_logo.webp" alt="Emobi" className="h-12 md:h-16 w-auto object-contain" />
                       <span className="text-cyan-200 text-4xl md:text-5xl">江ノ島</span>
                     </div>
@@ -324,11 +492,9 @@
                 </div>
                 
                 <div className="reveal active flex flex-col sm:flex-row gap-5 justify-center items-center">
-                  {/* CTAテキストを変更 */}
                   <a href="#booking" className="gradient-btn px-10 py-4 rounded-full text-white font-bold text-base shadow-2xl w-full sm:w-auto min-w-[240px] text-center tracking-widest">
                     湘南江ノ島店を予約する
                   </a>
-                  {/* CTAテキストを変更 */}
                   <a href="#booking" className="gradient-btn-yellow px-10 py-4 rounded-full text-white font-bold text-base shadow-2xl w-full sm:w-auto min-w-[240px] text-center tracking-widest">
                     片瀬江ノ島店を予約する
                   </a>
@@ -344,7 +510,6 @@
               <div className="flex flex-col lg:flex-row items-start gap-12 lg:gap-20">
                 <div className="w-full lg:w-3/5 reveal relative">
                   <div className="relative rounded-[20px] overflow-hidden shadow-2xl">
-                    {/* 画像をemobi_MV.webpに差し替え */}
                     <img src="emobi_MV.webp" alt="Emobi driving coastal road" className="w-full h-auto object-cover aspect-[4/3]" />
                   </div>
                   <div className="absolute -top-10 -left-10 text-cyan-200 text-6xl opacity-50"><i className="fa-solid fa-water"></i></div>
@@ -366,68 +531,19 @@
               </div>
             </section>
 
-            {/* 追加セクション: Emobiの特徴（比較表） - 修正済み */}
-            <section className="py-20 bg-white">
-              <div className="max-w-4xl mx-auto px-4">
-                {/* 修正1: タイトルをシンプルにし、サマリ言葉を分離 */}
-                <SectionTitle title="Emobiの特徴" subtitle="FEATURES" />
-                
-                {/* 修正1の続き: 表のすぐ上にサマリ的な言葉として配置 */}
-                <p className="text-center text-lg md:text-2xl font-bold text-gray-800 mb-8 -mt-8">
-                  お手軽価格でよくばり観光
-                </p>
-                
-                {/* 修正2: スマホで見やすいレイアウトに変更 */}
-                <div className="reveal overflow-hidden rounded-[20px] md:rounded-[30px] shadow-lg border border-gray-100 bg-white text-sm md:text-base">
-                  {/* Grid設定: スマホ(md未満)は[ラベル幅固定_残り等分_残り等分]、PC(md以上)は[均等3列] */}
-                  <div className="grid grid-cols-[3.5rem_1fr_1fr] md:grid-cols-3 text-center">
-                    
-                    {/* Header */}
-                    <div className="p-2 md:p-6 bg-gray-50 font-bold text-gray-600 flex items-center justify-center"></div>
-                    <div className="p-2 md:p-6 bg-cyan-500 text-white font-bold text-base md:text-xl flex items-center justify-center">Emobi</div>
-                    <div className="p-2 md:p-6 bg-gray-50 text-gray-600 font-bold text-xs md:text-base flex items-center justify-center">
-                      その他<br className="md:hidden" />交通
-                    </div>
-
-                    {/* Row 1 */}
-                    <div className="p-2 md:p-6 border-t border-gray-100 font-bold text-gray-700 flex items-center justify-center bg-gray-50 text-xs md:text-base leading-tight">
-                      スポット
-                    </div>
-                    <div className="p-2 md:p-6 border-t border-cyan-100 bg-cyan-50 text-cyan-800 font-bold flex items-center justify-center text-xs md:text-base leading-relaxed">
-                      鎌倉・江ノ島<br />逗子も巡れる
-                    </div>
-                    <div className="p-2 md:p-6 border-t border-gray-100 text-gray-500 flex items-center justify-center text-xs md:text-base leading-relaxed">
-                      どこか<br />1箇所のみ
-                    </div>
-
-                    {/* Row 2 */}
-                    <div className="p-2 md:p-6 border-t border-gray-100 font-bold text-gray-700 flex items-center justify-center bg-gray-50 text-xs md:text-base leading-tight">
-                      移動
-                    </div>
-                    <div className="p-2 md:p-6 border-t border-cyan-100 bg-cyan-50 text-cyan-800 font-bold flex items-center justify-center text-xs md:text-base leading-relaxed">
-                      渋滞知らずで<br />スイスイ
-                    </div>
-                    <div className="p-2 md:p-6 border-t border-gray-100 text-gray-500 flex items-center justify-center text-xs md:text-base leading-relaxed">
-                      混雑・渋滞<br />あり
-                    </div>
-                    
-                    {/* Row 3 */}
-                    <div className="p-2 md:p-6 border-t border-gray-100 font-bold text-gray-700 flex items-center justify-center bg-gray-50 text-xs md:text-base leading-tight">
-                      料金
-                    </div>
-                    <div className="p-2 md:p-6 border-t border-cyan-100 bg-cyan-50 text-cyan-800 font-bold flex items-center justify-center text-sm md:text-xl">
-                      1人<br/>1300円~
-                    </div>
-                    <div className="p-2 md:p-6 border-t border-gray-100 text-gray-500 flex items-center justify-center text-xs md:text-base leading-relaxed">
-                      意外と<br />かかる
-                    </div>
-                  </div>
-                </div>
+            {/* 3. 比較セクション（新規追加・差し替え） */}
+            <section className="bg-slate-50 relative overflow-hidden">
+               {/* 背景装飾 */}
+               <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+                <div className="absolute top-20 -left-20 w-80 h-80 bg-cyan-100 rounded-full mix-blend-multiply filter blur-3xl opacity-50"></div>
+                <div className="absolute bottom-20 -right-20 w-80 h-80 bg-yellow-100 rounded-full mix-blend-multiply filter blur-3xl opacity-50"></div>
               </div>
+              
+              <ComparisonSection />
             </section>
 
-            {/* 3. Emobi江ノ島だからこそのおすすめ */}
-            <section className="py-28 bg-gray-50">
+            {/* 4. Emobi江ノ島だからこそのおすすめ */}
+            <section className="py-28 bg-white">
               <div className="max-w-7xl mx-auto px-4">
                 <SectionTitle subtitle="RECOMMEND" title="Emobi江ノ島だから<br />できること" />
                 <div className="space-y-24">
@@ -482,33 +598,26 @@
               </div>
             </section>
 
-            {/* 4. 具体的な楽しみ方 */}
-            <section className="py-28 bg-white relative overflow-hidden">
+            {/* 5. 具体的な楽しみ方 */}
+            <section className="py-28 bg-gray-50 relative overflow-hidden">
               <div className="absolute top-10 left-0 w-full text-center pointer-events-none select-none overflow-hidden">
-                 {/* font-serifを削除してフォント統一 */}
-                 <span className="text-[20vw] font-bold text-gray-50 opacity-50 leading-none">OPEN</span>
+                 <span className="text-[20vw] font-bold text-gray-200 opacity-30 leading-none">OPEN</span>
               </div>
 
               <div className="max-w-6xl mx-auto px-4 relative z-10">
                 
-                {/* 1. モデルコース (Updated) */}
+                {/* 1. モデルコース */}
                 <div className="mb-32">
                   <SectionTitle subtitle="MODEL COURSE" title="移動時間も、<br />最高の思い出に。" />
                   <div className="relative">
-                    <div className="hidden md:block absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-0.5 bg-gray-100"></div>
+                    <div className="hidden md:block absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-0.5 bg-gray-200"></div>
                     <div className="space-y-24">
                       {[
-                        // 画像を差し替え (1番目)
                         { time: "10:00", label: "START", title: "店舗を出発", desc: "操作レクチャーを受けて、いざ出発！海風を感じる旅へ。", img: "emobi_enoshima.webp" },
-                        // 画像を差し替え (2番目: kamakurakoukoumae.jpg)
                         { time: "10:30", label: "PHOTO SPOT", title: "鎌倉高校前踏切", desc: "まずはスラムダンクの聖地へ！午前中の江ノ島→鎌倉方面（134号線）は渋滞知らず。混雑とは無縁の快適ドライブ！", img: "kamakurakoukoumae.jpg" },
-                        // 画像を差し替え (3番目: daibutsu.jpeg)
                         { time: "11:30", label: "SIGHTSEEING", title: "長谷寺・鎌倉大仏", desc: "鎌倉のシンボル「鎌倉大仏」へ。小回りの効くトゥクトゥクなら細い道もスイスイ移動して目的地へ直行！", img: "daibutsu.jpeg" },
-                        // 画像を差し替え (4番目: shirasuya.jpeg)
                         { time: "13:00", label: "LUNCH", title: "海沿いの「しらす屋」でランチ", desc: "海を眺めながら、湘南名物「しらす丼」に舌鼓。食後は134号線の絶景ドライブを堪能。", img: "shirasuya.jpeg" },
-                        // 画像を差し替え (5番目: enoshima_ohashi.webp)
                         { time: "14:30", label: "AQUARIUM", title: "新江ノ島水族館", desc: "大人気の「えのすい」へ。イルカショーや幻想的なクラゲに癒やされるひととき。", img: "enoshima_ohashi.webp" },
-                        // 画像を差し替え (6番目: enoshima_ohashi.webp)
                         { time: "16:00", label: "GOAL", title: "店舗へ帰着", desc: "夕暮れ前の江ノ島でフィニッシュ。充実した1日を振り返りながら返却。", img: "emobi_enoshima.webp" }
                       ].map((step, idx) => (
                         <div key={idx} className={`reveal flex flex-col md:flex-row items-center gap-12 ${idx % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}>
@@ -540,7 +649,6 @@
                     </div>
 
                     <div className="aspect-[9/16] bg-black rounded-xl overflow-hidden shadow-2xl relative border-4 border-white group cursor-pointer">
-                      {/* 画像パス変更: movie-thmbnail.webp */}
                       <img src="movie-thmbnail.webp" className="w-full h-full object-cover opacity-80 group-hover:opacity-60 transition-opacity" alt="Movie Thumbnail" />
                       <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
                         <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm border-2 border-white flex items-center justify-center group-hover:scale-110 transition-transform">
@@ -550,11 +658,9 @@
                     </div>
 
                     <div className="absolute -bottom-10 -left-16 w-40 h-40 z-20 hidden md:block transform rotate-6 hover:scale-110 transition-transform rounded-full overflow-hidden border-4 border-white shadow-lg">
-                        {/* 画像パス変更: movie-ac.webp */}
                         <img src="movie-ac.webp" className="w-full h-full object-cover" alt="TukTuk Image" />
                     </div>
 
-                    {/* font-serifを削除 */}
                     <div className="absolute bottom-20 -right-12 writing-vertical text-xs tracking-[0.3em] text-gray-400 hidden md:block">
                       Usage video
                       <div className="w-px h-16 bg-gray-300 mt-4 mx-auto"></div>
@@ -565,8 +671,8 @@
               </div>
             </section>
 
-            {/* 5. 利用者の声 */}
-            <section className="py-28 px-4 bg-gray-50">
+            {/* 6. 利用者の声 */}
+            <section className="py-28 px-4 bg-white">
               <div className="max-w-7xl mx-auto">
                 <SectionTitle subtitle="TESTIMONIALS" title={`江ノ島から乗ってよかった！\n体験者の声`} />
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -595,8 +701,8 @@
               </div>
             </section>
 
-            {/* 6. 冬でもOK (Updated) */}
-            <section className="py-28 px-4 bg-white relative">
+            {/* 7. 冬でもOK */}
+            <section className="py-28 px-4 bg-gray-50 relative">
               <div className="max-w-6xl mx-auto">
                 <div className="flex flex-col md:flex-row items-center justify-between gap-16 md:gap-24">
                   
@@ -619,11 +725,10 @@
               </div>
             </section>
 
-            {/* 7. Price (更新: 2時間/4時間プラン) */}
+            {/* 8. Price */}
             
-            <section id="price" className="py-28 px-4 bg-gray-50">
+            <section id="price" className="py-28 px-4 bg-white">
               <div className="max-w-7xl mx-auto">
-                {/* 修正：デザインを統一し、テキストを下に移動 */}
                 <div className="text-center mb-16 reveal text-gray-800">
                   <p className="text-sm md:text-base font-bold mb-3 tracking-[0.2em] text-cyan-600">
                     PRICE
@@ -633,7 +738,6 @@
                   </h2>
                   <div className="w-16 h-1 mx-auto mt-6 rounded-full bg-cyan-500"></div>
 
-                  {/* 移動したコンテンツ */}
                   <div className="mt-12">
                       <p className="text-lg font-bold text-gray-800 mb-2">
                         <span className="bg-yellow-200 px-1">3人で割れば、1人 1,660円〜</span>
@@ -674,8 +778,8 @@
               </div>
             </section>
 
-            {/* 8. 店舗紹介 (元7) */}
-            <section id="booking" className="py-28 px-4 bg-white">
+            {/* 9. 店舗紹介 */}
+            <section id="booking" className="py-28 px-4 bg-gray-50">
               <div className="max-w-7xl mx-auto">
                 <SectionTitle subtitle="STATIONS" title="店舗をお選びください" />
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -752,7 +856,7 @@
               </div>
             </section>
 
-             {/* 追加セクション: 店舗拡大中 */}
+             {/* 店舗拡大中 */}
              <section className="py-20 px-4 bg-white">
               <div className="max-w-7xl mx-auto">
                 <div className="reveal bg-gray-100 rounded-[40px] overflow-hidden flex flex-col lg:flex-row shadow-lg">
@@ -776,14 +880,13 @@
                   
                   {/* Image Side */}
                   <div className="w-full lg:w-7/12 relative min-h-[400px] bg-blue-100">
-                      {/* 画像が右側で切れるようなデザインにするため object-cover と object-left を調整 */}
                     <img src="mapemobi.png" alt="Emobi Station Map" className="absolute inset-0 w-full h-full object-cover" />
                   </div>
                 </div>
               </div>
             </section>
 
-            {/* 9. FAQ */}
+            {/* 10. FAQ */}
             <section className="py-28 px-4 bg-white">
               <div className="max-w-4xl mx-auto">
                 <SectionTitle subtitle="FAQ" title="よくあるご質問" />
