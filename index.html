@@ -312,12 +312,9 @@
               <div className="w-24 h-1.5 bg-[#00BFFF] mx-auto rounded-full mb-16 shadow-[0_0_15px_rgba(0,191,255,0.4)]"></div>
 
               <h3 className="text-2xl md:text-5xl font-black leading-tight text-slate-800 mb-6">
-                移動だけで終わる一日か、<br className="md:hidden" />
+                移動に疲弊して終わる一日か、<br className="md:hidden" />
                 <span className="text-[#00BFFF]">思い出で溢れる一日か。</span>
               </h3>
-              <p className="text-slate-500 font-bold text-xs md:text-base opacity-70">
-                左は「ただの移動」、右は「すべてがアトラクション」。
-              </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-stretch">
@@ -368,21 +365,11 @@
                 </div>
 
                 <div className="mt-auto w-full relative z-10">
-                  {/* HPゲージ風デザイン */}
-                  <div className="bg-white rounded-2xl py-4 px-6 mb-10 border border-gray-200 shadow-sm w-full max-w-xs mx-auto">
-                    <div className="flex justify-between items-center mb-2">
-                        <span className="text-xs font-black text-gray-400">HP残量</span>
-                        <span className="text-xs font-black text-red-500 animate-pulse">15% (BATTERY LOW)</span>
-                    </div>
-                    <div className="w-full h-3 bg-gray-200 rounded-full overflow-hidden">
-                        <div className="h-full bg-red-500 w-[15%]"></div>
-                    </div>
-                  </div>
                   
                   <div className="w-full h-px bg-gray-300 mb-8" />
                   <p className="text-gray-500 text-sm md:text-base font-bold leading-relaxed">
-                    「やっと着いた...」その一言で終わる旅。<br />
-                    景色よりも、人混みとスマホの地図を見ている時間の方が長い。
+                    「やっと着いた...」「マジ疲れた。。。」<br />
+                    景色よりも、人混みと地図を見ている時間の方が長い。
                   </p>
                 </div>
               </div>
@@ -397,7 +384,7 @@
                   <div className="w-20 h-20 bg-[#00BFFF] rounded-3xl flex items-center justify-center mb-8 shadow-2xl shadow-[#00BFFF]/40">
                     <i className="fa-solid fa-bolt text-4xl text-white"></i>
                   </div>
-                  <h4 className="text-2xl md:text-3xl font-black text-slate-800">Emobiスタイル</h4>
+                  <h4 className="text-2xl md:text-3xl font-black text-slate-800">Emobi</h4>
                 </div>
 
                 {/* 爆発するグリッド写真：実際の観光写真 */}
@@ -439,10 +426,6 @@
                 </div>
 
                 <div className="mt-auto w-full">
-                  <div className="bg-[#00BFFF] rounded-2xl py-4 px-10 inline-flex items-center gap-3 mb-10 shadow-2xl shadow-[#00BFFF]/30 group-hover:scale-110 transition-transform">
-                    <i className="fa-solid fa-camera text-xl text-white"></i>
-                    <span className="text-white font-black text-sm tracking-tighter uppercase">50+ Photos Captured</span>
-                  </div>
                   <div className="w-full h-px bg-slate-100 mb-10" />
                   <p className="text-slate-700 text-sm md:text-base font-bold leading-relaxed">
                     すべての道がシャッターチャンス。<br />
@@ -452,28 +435,7 @@
               </div>
             </div>
 
-            {/* サマリーエリア */}
-            <div className="mt-32 flex flex-col md:flex-row items-center justify-center gap-16 bg-slate-950 rounded-[4rem] p-12 md:p-20 text-white shadow-2xl">
-              <div className="flex flex-col items-center md:items-start text-center md:text-left gap-6 max-w-lg">
-                <div className="inline-flex items-center gap-3 text-[#00BFFF] font-black text-xs md:text-sm uppercase tracking-[0.3em]">
-                  <i className="fa-solid fa-arrow-trend-up text-xl"></i> Memory Density Efficiency
-                </div>
-                <h5 className="text-3xl md:text-4xl font-black leading-tight">
-                  カメラロールの「厚み」が、<br />
-                  旅の充実度の証です。
-                </h5>
-                <p className="text-slate-400 text-sm font-medium">
-                  徒歩移動の「虚無」を、すべて「感動」へ。<br className="hidden md:block" />
-                  Emobiがあなたの鎌倉観光を、一生の思い出に変えます。
-                </p>
-              </div>
-              <div className="flex-shrink-0">
-                <a href="#booking" className="px-16 py-8 bg-[#00BFFF] hover:bg-white hover:text-[#00BFFF] transition-all duration-500 text-white font-black text-2xl rounded-full shadow-[0_20px_60px_rgba(0,191,255,0.5)] flex items-center gap-5 group">
-                  <i className="fa-solid fa-bolt text-2xl group-hover:scale-125 transition-transform"></i>
-                  思い出を予約する
-                </a>
-              </div>
-            </div>
+          
           </div>
         );
       };
