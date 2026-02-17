@@ -26,6 +26,16 @@
         animation: float 5s ease-in-out infinite;
       }
 
+      /* 疲弊感の演出（揺れ） */
+      @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        25% { transform: translateX(-2px); }
+        75% { transform: translateX(2px); }
+      }
+      .animate-shake-slow {
+        animation: shake 3s ease-in-out infinite;
+      }
+
       /* 画像グリッドのホバーエフェクト */
       .photo-grid div { transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
       .photo-grid:hover div { filter: brightness(0.7); transform: scale(0.95); }
@@ -80,12 +90,6 @@
         transform: rotate(180deg);
       }
       
-      /* マーカー風の下線 */
-      .marker-yellow {
-        background: linear-gradient(transparent 60%, #fff566 60%);
-        display: inline;
-      }
-
       /* 価格表用のスタイル */
       .price-card-border {
         border: 1px solid #333;
@@ -135,6 +139,11 @@
         font-weight: bold;
         padding: 4px 0;
         box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      /* マーカー風の下線 */
+      .marker-yellow {
+        background: linear-gradient(transparent 60%, #fff566 60%);
+        display: inline;
       }
     </style>
 
@@ -288,7 +297,7 @@
         );
       };
 
-      // --- 新しい比較セクションコンポーネント (LucideアイコンをFontAwesomeに置換) ---
+      // --- 比較セクション（更新：混雑感を強調） ---
       const ComparisonSection = () => {
         return (
           <div className="w-full max-w-6xl mx-auto px-4 py-20 reveal">
@@ -313,51 +322,67 @@
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-stretch">
               
-              {/* 左カード：虚無の徒歩・電車 */}
-              <div className="bg-[#F8F9FA] rounded-[4rem] p-10 md:p-14 flex flex-col items-center text-center border border-slate-200 relative overflow-hidden shadow-sm">
-                <div className="absolute top-10 left-10 px-5 py-2 bg-[#E9ECEF] text-slate-500 text-[10px] font-black rounded-full uppercase tracking-widest">
-                  Wait & Move
+              {/* 左カード：疲弊・混雑・ストレス（強化版） */}
+              <div className="bg-[#f3f4f6] rounded-[4rem] p-10 md:p-14 flex flex-col items-center text-center border border-slate-300 relative overflow-hidden shadow-inner">
+                {/* 背景のにじみ */}
+                <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-gray-200 pointer-events-none"></div>
+                
+                <div className="absolute top-10 left-10 px-5 py-2 bg-gray-300 text-gray-600 text-[10px] font-black rounded-full uppercase tracking-widest z-10">
+                  Stress & Fatigue
                 </div>
                 
-                <div className="mb-10 w-full flex flex-col items-center">
-                  <div className="w-20 h-20 bg-[#E9ECEF] rounded-3xl flex items-center justify-center mb-8">
-                    <i className="fa-regular fa-clock text-4xl text-slate-400"></i>
+                <div className="mb-10 w-full flex flex-col items-center relative z-10">
+                  <div className="w-20 h-20 bg-gray-300 rounded-3xl flex items-center justify-center mb-8 animate-shake-slow">
+                     {/* 疲れた顔アイコンに変更 */}
+                    <i className="fa-regular fa-face-tired text-4xl text-gray-500"></i>
                   </div>
-                  <h4 className="text-2xl md:text-3xl font-black text-slate-400">徒歩・公共交通</h4>
+                  <h4 className="text-2xl md:text-3xl font-black text-gray-500">徒歩・公共交通</h4>
                 </div>
 
-                {/* 寂しい写真エリア */}
-                <div className="relative w-full aspect-[4/3] mb-12 flex items-center justify-center bg-white/40 rounded-[3rem] border-2 border-dashed border-slate-200">
-                  <div className="relative z-10 w-56 aspect-[4/3] rounded-[2rem] overflow-hidden border-4 border-white shadow-2xl grayscale brightness-90">
+                {/* 混雑写真エリア */}
+                <div className="relative w-full aspect-[4/3] mb-12 flex items-center justify-center bg-gray-200 rounded-[3rem] border-2 border-dashed border-gray-300 z-10">
+                  <div className="relative z-10 w-56 aspect-[4/3] rounded-[2rem] overflow-hidden border-4 border-white shadow-xl grayscale contrast-125">
+                     {/* 人混みの画像に変更（ダミーURL: UnsplashのCrowd） */}
                     <img 
-                      src="https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&q=80&w=600" 
-                      alt="Crowded Bus" 
-                      className="w-full h-full object-cover" 
+                      src="https://images.unsplash.com/photo-1494515843206-f3117d3f51b7?auto=format&fit=crop&q=80&w=600" 
+                      alt="Crowded Place" 
+                      className="w-full h-full object-cover opacity-80" 
                     />
+                    {/* アラートバッジ */}
+                    <div className="absolute top-2 right-2 bg-red-500 text-white text-[10px] font-bold px-2 py-1 rounded shadow-md">
+                        <i className="fa-solid fa-triangle-exclamation mr-1"></i>混雑
+                    </div>
                   </div>
 
-                  {/* 装飾 */}
-                  <div className="absolute top-12 right-12 opacity-20">
-                    <i className="fa-regular fa-comment text-5xl text-slate-400"></i>
+                  {/* 悲痛な叫び（装飾） */}
+                  <div className="absolute -top-4 -right-2 bg-white px-4 py-2 rounded-full shadow-md text-xs font-bold text-gray-500 border border-gray-200 transform rotate-12">
+                    座れない...
                   </div>
-                  <div className="absolute bottom-12 left-12 flex items-center gap-2 opacity-50">
-                    <i className="fa-solid fa-spinner fa-spin text-xl text-slate-400"></i>
-                    <span className="text-[10px] font-black text-slate-400">信号待ち 5分...</span>
+                   <div className="absolute bottom-8 -left-2 bg-white px-4 py-2 rounded-full shadow-md text-xs font-bold text-gray-500 border border-gray-200 transform -rotate-6">
+                    あと何分...？
                   </div>
-                  <div className="absolute top-1/2 left-12 -translate-y-1/2 opacity-5">
-                    <i className="fa-regular fa-clock text-8xl"></i>
+
+                  <div className="absolute bottom-12 right-12 flex items-center gap-2 opacity-60">
+                    <i className="fa-solid fa-spinner fa-spin text-xl text-gray-500"></i>
                   </div>
                 </div>
 
-                <div className="mt-auto w-full">
-                  <div className="bg-[#E9ECEF]/70 rounded-2xl py-4 px-8 inline-flex items-center gap-3 mb-10">
-                    <i className="fa-solid fa-camera text-xl text-slate-400"></i>
-                    <span className="text-slate-500 font-black text-sm tracking-tighter">カメラロール：2枚</span>
+                <div className="mt-auto w-full relative z-10">
+                  {/* HPゲージ風デザイン */}
+                  <div className="bg-white rounded-2xl py-4 px-6 mb-10 border border-gray-200 shadow-sm w-full max-w-xs mx-auto">
+                    <div className="flex justify-between items-center mb-2">
+                        <span className="text-xs font-black text-gray-400">HP残量</span>
+                        <span className="text-xs font-black text-red-500 animate-pulse">15% (BATTERY LOW)</span>
+                    </div>
+                    <div className="w-full h-3 bg-gray-200 rounded-full overflow-hidden">
+                        <div className="h-full bg-red-500 w-[15%]"></div>
+                    </div>
                   </div>
-                  <div className="w-full h-px bg-slate-200 mb-10" />
-                  <p className="text-slate-400 text-sm md:text-base font-bold leading-relaxed">
+                  
+                  <div className="w-full h-px bg-gray-300 mb-8" />
+                  <p className="text-gray-500 text-sm md:text-base font-bold leading-relaxed">
                     「やっと着いた...」その一言で終わる旅。<br />
-                    景色よりもスマホの地図を見ている時間の方が長い。
+                    景色よりも、人混みとスマホの地図を見ている時間の方が長い。
                   </p>
                 </div>
               </div>
@@ -375,7 +400,7 @@
                   <h4 className="text-2xl md:text-3xl font-black text-slate-800">Emobiスタイル</h4>
                 </div>
 
-                {/* 爆発するグリッド写真：実際の観光写真に変更 */}
+                {/* 爆発するグリッド写真：実際の観光写真 */}
                 <div className="relative w-full aspect-[4/3] mb-12 group p-2 photo-grid">
                   <div className="grid grid-cols-3 grid-rows-2 gap-3 h-full rounded-[2.5rem] overflow-hidden">
                     <div className="relative overflow-hidden rounded-2xl rotate-[-4deg]">
