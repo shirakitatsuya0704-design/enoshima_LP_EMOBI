@@ -7,6 +7,10 @@
     <meta name="description" content="鎌倉・江ノ島エリアの電動トゥクトゥクレンタル。混雑を避けた新しい観光スタイルをご提案します。" />
     
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -95,21 +99,21 @@
         border: 1px solid #333;
       }
       .price-card-border-blue {
-        border: 2px solid #3b82f6; /* Tailwind blue-500 equivalent */
+        border: 2px solid #3b82f6;
       }
       .triangle-down {
         width: 0;
         height: 0;
         border-left: 10px solid transparent;
         border-right: 10px solid transparent;
-        border-top: 10px solid #1f2937; /* gray-800 */
+        border-top: 10px solid #1f2937;
         position: absolute;
         bottom: -10px;
         left: 50%;
         transform: translateX(-50%);
       }
       .triangle-down-blue {
-        border-top-color: #3b82f6; /* blue-500 */
+        border-top-color: #3b82f6;
       }
       .dotted-line {
         border-bottom: 2px dotted #e5e7eb;
@@ -146,22 +150,12 @@
         display: inline;
       }
     </style>
-
-    <script type="importmap">
-    {
-      "imports": {
-        "react": "https://esm.sh/react@18.2.0",
-        "react-dom/client": "https://esm.sh/react-dom@18.2.0/client"
-      }
-    }
-    </script>
   </head>
   <body>
     <div id="root"></div>
 
-    <script type="text/babel" data-type="module">
-      import React, { useEffect, useState } from 'react';
-      import ReactDOM from 'react-dom/client';
+    <script type="text/babel">
+      const { useEffect, useState } = React;
 
       // --- Components ---
 
@@ -237,7 +231,6 @@
         </div>
       );
 
-      // カルーセルコンポーネント
       const ImageCarousel = () => {
         const images = ["1.png", "2.png", "3.png", "4.png", "5.png", "6.png"];
         const [currentIndex, setCurrentIndex] = useState(0);
@@ -297,11 +290,9 @@
         );
       };
 
-      // --- 比較セクション（更新：マップ画像を使用したレイアウト） ---
       const ComparisonSection = () => {
         return (
           <div className="w-full max-w-6xl mx-auto px-4 py-20 reveal">
-            {/* タイトルエリア */}
             <div className="text-center mb-16 md:mb-20">
               <p className="text-[#00BFFF] font-black text-xs md:text-sm tracking-[0.4em] uppercase mb-5">
                 Comparison
@@ -319,9 +310,7 @@
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-stretch">
               
-              {/* 左カード：疲弊・混雑・ストレス */}
               <div className="bg-[#f3f4f6] rounded-[3rem] md:rounded-[4rem] p-6 md:p-10 flex flex-col items-center text-center border border-slate-300 relative overflow-hidden shadow-inner">
-                {/* 背景のにじみ */}
                 <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-gray-200 pointer-events-none"></div>
                 
                 <div className="absolute top-6 md:top-10 left-6 md:left-10 px-4 md:px-5 py-2 bg-gray-300 text-gray-600 text-[10px] font-black rounded-full uppercase tracking-widest z-10">
@@ -335,7 +324,6 @@
                   <h4 className="text-2xl md:text-3xl font-black text-gray-500">公共交通・徒歩</h4>
                 </div>
 
-                {/* 江ノ電徒歩マップ */}
                 <div className="relative w-full mb-8 md:mb-12 z-10">
                   <img 
                     src="enoden.walk.png" 
@@ -353,7 +341,6 @@
                 </div>
               </div>
 
-              {/* 右カード：思い出爆発のEmobi */}
               <div className="bg-white rounded-[3rem] md:rounded-[4rem] p-6 md:p-10 flex flex-col items-center text-center border-[6px] border-[#00BFFF] shadow-[0_50px_100px_-20px_rgba(0,191,255,0.3)] animate-float relative z-10">
                 <div className="absolute top-6 md:top-10 left-6 md:left-10 px-4 md:px-5 py-2 bg-[#00BFFF] text-white text-[10px] font-black rounded-full uppercase tracking-widest shadow-lg shadow-[#00BFFF]/30">
                   Memories Overflow
@@ -366,14 +353,12 @@
                   <h4 className="text-2xl md:text-3xl font-black text-slate-800">Emobi</h4>
                 </div>
 
-                {/* トゥクトゥクマップ */}
                 <div className="relative w-full mb-8 md:mb-12 z-10">
                   <img 
                     src="enoden_tuktuk.png" 
                     alt="トゥクトゥクなら快適な移動を実現！" 
                     className="w-full h-auto rounded-[1.5rem] md:rounded-[2rem] border-4 border-white shadow-xl bg-white" 
                   />
-                  {/* 装飾アイコン */}
                   <div className="absolute -bottom-4 -right-4 md:-bottom-6 md:-right-6 z-30 text-yellow-400 animate-pulse">
                     <i className="fa-solid fa-wand-magic-sparkles text-4xl md:text-5xl"></i>
                   </div>
@@ -413,7 +398,6 @@
         return (
           <div className="bg-white overflow-x-hidden text-gray-800 leading-loose">
             
-            {/* 1. Hero Section (FV) */}
             <section className="relative h-[70vh] w-full flex items-center justify-center overflow-hidden">
               <div className="absolute inset-0 z-0">
                 <img src="emobi_FV.jpg" className="w-full h-full object-cover brightness-[0.5]" alt="Shonan Beach" />
@@ -447,7 +431,6 @@
               </div>
             </section>
 
-            {/* 2. Emobiとは？ */}
             <section className="py-24 md:py-32 px-4 max-w-7xl mx-auto">
               <div className="flex flex-col lg:flex-row items-start gap-12 lg:gap-20">
                 <div className="w-full lg:w-3/5 reveal relative">
@@ -473,9 +456,7 @@
               </div>
             </section>
 
-            {/* 3. 比較セクション（新規追加・差し替え） */}
             <section className="bg-slate-50 relative overflow-hidden">
-               {/* 背景装飾 */}
                <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
                 <div className="absolute top-20 -left-20 w-80 h-80 bg-cyan-100 rounded-full mix-blend-multiply filter blur-3xl opacity-50"></div>
                 <div className="absolute bottom-20 -right-20 w-80 h-80 bg-yellow-100 rounded-full mix-blend-multiply filter blur-3xl opacity-50"></div>
@@ -484,12 +465,10 @@
               <ComparisonSection />
             </section>
 
-            {/* 4. Emobi江ノ島だからこそのおすすめ */}
             <section className="py-28 bg-white">
               <div className="max-w-7xl mx-auto px-4">
                 <SectionTitle subtitle="RECOMMEND" title="Emobi江ノ島だから<br/>できること" />
                 <div className="space-y-24">
-                  {/* Point 1 */}
                   <div className="reveal flex flex-col md:flex-row items-center gap-12 md:gap-24">
                     <div className="w-full md:w-1/2 overflow-hidden rounded-[48px] shadow-xl group">
                       <img src="enoshima_ohashi.webp" className="w-full h-full object-cover aspect-[4/3] group-hover:scale-105 transition-transform duration-700" alt="Aquarium" />
@@ -505,7 +484,6 @@
                     </div>
                   </div>
                   
-                  {/* Point 2 */}
                   <div className="reveal flex flex-col md:flex-row-reverse items-center gap-12 md:gap-24">
                     <div className="w-full md:w-1/2 overflow-hidden rounded-[48px] shadow-xl group">
                       <img src="gyaku.jpg" className="w-full h-full object-cover aspect-[4/3] group-hover:scale-105 transition-transform duration-700" alt="Kamakura Drive" />
@@ -521,7 +499,6 @@
                     </div>
                   </div>
 
-                  {/* Point 3 */}
                   <div className="reveal flex flex-col md:flex-row items-center gap-12 md:gap-24">
                     <div className="w-full md:w-1/2 overflow-hidden rounded-[48px] shadow-xl group">
                       <img src="chigasaki.jpg" className="w-full h-full object-cover aspect-[4/3] group-hover:scale-105 transition-transform duration-700" alt="Shonan Coast" />
@@ -540,7 +517,6 @@
               </div>
             </section>
 
-            {/* 5. 具体的な楽しみ方 */}
             <section className="py-28 bg-gray-50 relative overflow-hidden">
               <div className="absolute top-10 left-0 w-full text-center pointer-events-none select-none overflow-hidden">
                  <span className="text-[20vw] font-bold text-gray-200 opacity-30 leading-none">OPEN</span>
@@ -548,7 +524,6 @@
 
               <div className="max-w-6xl mx-auto px-4 relative z-10">
                 
-                {/* 1. モデルコース */}
                 <div className="mb-32">
                   <SectionTitle subtitle="MODEL COURSE" title="移動時間も、<br/>最高の思い出に。" />
                   <div className="relative">
@@ -572,7 +547,6 @@
                   </div>
                 </div>
 
-                {/* 2. デートプラン (動画) */}
                 <div className="reveal">
                     <div className="text-center mb-12">
                       <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-800">最新！<br/>江ノ島鎌倉デートプラン</h2>
@@ -613,7 +587,6 @@
               </div>
             </section>
 
-            {/* 6. 利用者の声 */}
             <section className="py-28 px-4 bg-white">
               <div className="max-w-7xl mx-auto">
                 <SectionTitle subtitle="TESTIMONIALS" title={`江ノ島から乗ってよかった！\n体験者の声`} />
@@ -643,12 +616,10 @@
               </div>
             </section>
 
-            {/* 7. 冬でもOK */}
             <section className="py-28 px-4 bg-gray-50 relative">
               <div className="max-w-6xl mx-auto">
                 <div className="flex flex-col md:flex-row items-center justify-between gap-16 md:gap-24">
                   
-                  {/* Text Side */}
                   <div className="w-full md:w-5/12 reveal text-left">
                     <h2 className="text-3xl md:text-4xl font-bold mb-8 text-blue-400 leading-tight">
                       Emobiは冬でも快適！
@@ -658,7 +629,6 @@
                     </p>
                   </div>
 
-                  {/* Carousel Side */}
                   <div className="w-full md:w-6/12 reveal">
                     <ImageCarousel />
                   </div>
@@ -667,7 +637,6 @@
               </div>
             </section>
 
-            {/* 8. Price */}
             
             <section id="price" className="py-28 px-4 bg-white">
               <div className="max-w-7xl mx-auto">
@@ -692,7 +661,6 @@
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch max-w-5xl mx-auto">
                   
-                  {/* 2時間プラン */}
                   <PriceCard 
                     label="手軽に楽しみたい方に"
                     title="2時間プラン"
@@ -704,7 +672,6 @@
                     price2="3,980"
                   />
                   
-                  {/* 4時間プラン */}
                   <PriceCard 
                     label="鎌倉まで満喫するなら！"
                     title="4時間プラン"
@@ -720,13 +687,11 @@
               </div>
             </section>
 
-            {/* 9. 店舗紹介 */}
             <section id="booking" className="py-28 px-4 bg-gray-50">
               <div className="max-w-7xl mx-auto">
                 <SectionTitle subtitle="STATIONS" title="店舗をお選びください" />
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                   
-                  {/* 湘南江の島店 */}
                   <div className="reveal bg-white rounded-[48px] border-4 border-cyan-50 p-8 md:p-12 shadow-2xl flex flex-col relative overflow-hidden">
                     <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4">
                         <h3 className="text-3xl font-bold text-gray-800">湘南江の島店</h3>
@@ -760,7 +725,6 @@
                     </div>
                   </div>
 
-                  {/* 片瀬江の島店 */}
                     <div className="reveal bg-white rounded-[48px] border-4 border-orange-50 p-8 md:p-12 shadow-2xl flex flex-col relative overflow-hidden">
                     <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4">
                         <h3 className="text-3xl font-bold text-gray-800">片瀬江の島店</h3>
@@ -798,11 +762,9 @@
               </div>
             </section>
 
-             {/* 店舗拡大中 */}
              <section className="py-20 px-4 bg-white">
               <div className="max-w-7xl mx-auto">
                 <div className="reveal bg-gray-100 rounded-[40px] overflow-hidden flex flex-col lg:flex-row shadow-lg">
-                  {/* Text Side */}
                   <div className="w-full lg:w-5/12 p-8 md:p-14 flex flex-col justify-center">
                     <h2 className="text-3xl md:text-4xl font-bold mb-8 text-gray-800">湘南エリアで店舗拡大中</h2>
                     <p className="text-gray-600 text-lg leading-loose mb-10">
@@ -820,7 +782,6 @@
                     </div>
                   </div>
                   
-                  {/* Image Side */}
                   <div className="w-full lg:w-7/12 relative min-h-[400px] bg-blue-100">
                     <img src="mapemobi.png" alt="Emobi Station Map" className="absolute inset-0 w-full h-full object-cover" />
                   </div>
@@ -828,7 +789,6 @@
               </div>
             </section>
 
-            {/* 10. FAQ */}
             <section className="py-28 px-4 bg-white">
               <div className="max-w-4xl mx-auto">
                 <SectionTitle subtitle="FAQ" title="よくあるご質問" />
@@ -865,7 +825,6 @@
               </div>
             </section>
 
-            {/* Footer CTA */}
             <section className="py-40 bg-gray-950 text-white text-center relative overflow-hidden">
               <div className="max-w-4xl mx-auto px-4 relative z-10 reveal">
                 <h2 className="text-4xl md:text-6xl font-bold mb-10 leading-tight">湘南で最高の1day旅を送るなら<br />Emobi 江ノ島</h2>
