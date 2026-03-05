@@ -564,13 +564,17 @@
                         <div className="w-8 h-0.5 bg-cyan-400 rotate-[-10deg] ml-4"></div>
                     </div>
 
-                    <div className="aspect-[9/16] bg-black rounded-xl overflow-hidden shadow-2xl relative border-4 border-white group cursor-pointer">
-                      <img src="movie-thmbnail.webp" className="w-full h-full object-cover opacity-80 group-hover:opacity-60 transition-opacity" alt="Movie Thumbnail" />
-                      <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
-                        <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm border-2 border-white flex items-center justify-center group-hover:scale-110 transition-transform">
-                          <i className="fa-solid fa-play text-2xl ml-1"></i>
-                        </div>
-                      </div>
+                    <div className="aspect-[9/16] bg-black rounded-xl overflow-hidden shadow-2xl relative border-4 border-white group">
+                      <iframe 
+                        width="100%" 
+                        height="100%" 
+                        src="https://www.youtube.com/embed/Lp9PPIKaOP8" 
+                        title="YouTube video player" 
+                        frameBorder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowFullScreen
+                        className="w-full h-full"
+                      ></iframe>
                     </div>
 
                     <div className="absolute -bottom-10 -left-16 w-40 h-40 z-20 hidden md:block transform rotate-6 hover:scale-110 transition-transform rounded-full overflow-hidden border-4 border-white shadow-lg">
