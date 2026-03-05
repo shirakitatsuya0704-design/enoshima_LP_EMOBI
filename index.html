@@ -530,12 +530,12 @@
                     <div className="hidden md:block absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-0.5 bg-gray-200"></div>
                     <div className="space-y-24">
                       {[
-                        { time: "11:00", label: "START", title: "店舗を出発", desc: "操作レクチャーを受けて、いざ出発！海風を感じる旅へ。", img: "emobi_enoshima.webp" },
+                        { time: "11:00", label: "START", title: "店舗を出発", desc: "操作レクチャーを見て、いざ出発！海風を感じる旅へ。", img: "emobi_enoshima.webp" },
                         { time: "11:30", label: "PHOTO SPOT", title: "鎌倉高校前踏切", desc: "まずはスラムダンクの聖地へ！午前中の江ノ島→鎌倉方面（134号線）は渋滞知らず。混雑とは無縁の快適ドライブ！", img: "kamakura-hs.jpeg" },
                         { time: "12:30", label: "SIGHTSEEING", title: "長谷寺・鎌倉大仏", desc: "鎌倉のシンボル「鎌倉大仏」へ。小回りの効くトゥクトゥクなら細い道もスイスイ移動して目的地へ直行！", img: "daibutsu.jpeg" },
                         { time: "14:00", label: "LUNCH", title: "海沿いの「しらす屋」でランチ", desc: "海を眺めながら、湘南名物「しらす丼」に舌鼓。食後は134号線の絶景ドライブを堪能。", img: "shirasuya.jpeg" },
                         { time: "16:30", label: "AQUARIUM", title: "江ノ島の夕焼け", desc: "江ノ島の絶景をトゥクトゥクから。", img: "yuuyake.JPEG" },
-                        { time: "17:00", label: "GOAL", title: "店舗へ帰着", desc: "夕暮れの江ノ島でフィニッシュ。充実した1日を振り返りながら返却。", img: "emobi_enoshima.webp" }
+                        { time: "17:00", label: "GOAL", title: "店舗へ帰着", desc: "夕暮れの江ノ島でフィニッシュ。充実した1日を振り返りながら返却。", img: "henkyaku.webp" }
                       ].map((step, idx) => (
                         <div key={idx} className={`reveal flex flex-col md:flex-row items-center gap-12 ${idx % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}>
                           <div className="w-full md:w-1/2"><div className="relative rounded-[40px] overflow-hidden shadow-2xl border-4 border-gray-50"><img src={step.img} className="w-full h-72 object-cover" alt={step.title} /><div className="absolute top-6 left-6 glass px-5 py-2 rounded-full text-cyan-600 font-bold text-xs">{step.time} | {step.label}</div></div></div>
